@@ -3,7 +3,6 @@ package com.example.myapplication;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -12,33 +11,37 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class MainActivity extends AppCompatActivity {
 
-    private EditText phoneInput, passwordInput;
+    private EditText emailInput, phoneInput, passwordInput;
     private ImageView eyeIcon;
     private Button nextButton;
+    private FirebaseAuth auth;
     private boolean passwordVisible = false;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        auth = FirebaseAuth.getInstance();
+
+
+
+        emailInput = findViewById(R.id.emailInput);
         phoneInput = findViewById(R.id.phoneInput);
         passwordInput = findViewById(R.id.passwordInput);
         eyeIcon = findViewById(R.id.eyeIcon);
         nextButton = findViewById(R.id.nextButton);
 
-        // Lien vers LoginActivity
+
         TextView goToLogin = findViewById(R.id.goToLogin);
         goToLogin.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
         });
 
-
-        // Affiche/masque le mot de passe
         eyeIcon.setOnClickListener(view -> {
             passwordVisible = !passwordVisible;
             if (passwordVisible) {
@@ -50,16 +53,24 @@ public class MainActivity extends AppCompatActivity {
         });
 
         nextButton.setOnClickListener(view -> {
-            String phone = phoneInput.getText().toString().trim();
+            String email = emailInput.getText().toString().trim();
             String password = passwordInput.getText().toString().trim();
 
-            if (phone.isEmpty() || password.isEmpty()) {
-                Toast.makeText(this, "Please fill in both fields", Toast.LENGTH_SHORT).show();
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            Toast.makeText(this, "Welcome!", Toast.LENGTH_SHORT).show();
-            // Ici tu peux faire startActivity(new Intent(...)) vers l'app réelle
+            auth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(this, "Account created successfully!", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(this, HomeActivity.class));
+                            finish();
+                        } else {
+                            Toast.makeText(this, "Signup failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
         });
     }
 }

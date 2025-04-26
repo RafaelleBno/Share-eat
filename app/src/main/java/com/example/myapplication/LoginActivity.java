@@ -11,26 +11,30 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText loginPhoneInput, loginPasswordInput;
+    private EditText loginEmailInput, loginPasswordInput;
     private ImageView loginEyeIcon;
     private Button loginBtn;
     private TextView goToSignup;
     private boolean passwordVisible = false;
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        loginPhoneInput = findViewById(R.id.loginPhoneInput);
+        auth = FirebaseAuth.getInstance();
+
+        loginEmailInput = findViewById(R.id.loginEmailInput);
         loginPasswordInput = findViewById(R.id.loginPasswordInput);
         loginEyeIcon = findViewById(R.id.loginEyeIcon);
         loginBtn = findViewById(R.id.loginBtn);
         goToSignup = findViewById(R.id.goToSignup);
 
-        // Affichage / masquage du mot de passe
         loginEyeIcon.setOnClickListener(v -> {
             passwordVisible = !passwordVisible;
             if (passwordVisible) {
@@ -41,25 +45,29 @@ public class LoginActivity extends AppCompatActivity {
             loginPasswordInput.setSelection(loginPasswordInput.getText().length());
         });
 
-        // Bouton Login
         loginBtn.setOnClickListener(v -> {
-            String phone = loginPhoneInput.getText().toString().trim();
+            String email = loginEmailInput.getText().toString().trim();
             String password = loginPasswordInput.getText().toString().trim();
 
-            if (phone.isEmpty() || password.isEmpty()) {
+            if (email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            // 🔐 Simulation de login
-            Toast.makeText(this, "Login success (mock)", Toast.LENGTH_SHORT).show();
-            // TODO: ici tu peux ajouter Firebase Auth ou rediriger vers HomeActivity
+            auth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(this, HomeActivity.class));
+                            finish();
+                        } else {
+                            Toast.makeText(this, "Login failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
         });
 
-        // Lien vers l'inscription
         goToSignup.setOnClickListener(v -> {
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class); // vers inscription
-            startActivity(intent);
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
         });
     }
 }
