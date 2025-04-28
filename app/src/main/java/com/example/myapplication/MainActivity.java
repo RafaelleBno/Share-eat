@@ -16,7 +16,6 @@ import com.google.firebase.auth.FirebaseAuth;
 public class MainActivity extends AppCompatActivity {
 
     private EditText emailInput, phoneInput, passwordInput;
-    private ImageView eyeIcon;
     private Button nextButton;
     private FirebaseAuth auth;
     private boolean passwordVisible = false;
@@ -28,14 +27,11 @@ public class MainActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
 
-
-
         emailInput = findViewById(R.id.emailInput);
         phoneInput = findViewById(R.id.phoneInput);
         passwordInput = findViewById(R.id.passwordInput);
-        eyeIcon = findViewById(R.id.eyeIcon);
+        ImageView eyeIcon = findViewById(R.id.eyeIcon);
         nextButton = findViewById(R.id.nextButton);
-
 
         TextView goToLogin = findViewById(R.id.goToLogin);
         goToLogin.setOnClickListener(v -> {
@@ -65,12 +61,14 @@ public class MainActivity extends AppCompatActivity {
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
                             Toast.makeText(this, "Account created successfully!", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(this, HomeActivity.class));
+                            startActivity(new Intent(this, MenuActivity.class));
                             finish();
                         } else {
                             Toast.makeText(this, "Signup failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
                     });
         });
+
     }
 }
+

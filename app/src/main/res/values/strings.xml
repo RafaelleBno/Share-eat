@@ -1,3 +1,34 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">M\'Eat</string>
+
+    <!-- Strings pour la page du plat en détail -->
+    <string name="pates_bolognaises">Pâtes bolognaises : </string>
+    <string name="trois_euros">3 €</string>
+    <string name="allergenes">Allergènes : </string>
+    <string name="gluten">Gluten</string>
+    <string name="lactose">Lactose</string>
+    <string name="descritpion">Description : </string>
+    <string name="descritpion_detail">Tortellinis, boeuf haché, emmental rapé, basilic</string>
+    <string name="portions">Portions :</string>
+    <string name="mode_de_retrait">Mode de retrait :</string>
+    <string name="pick_up">PickUp</string>
+    <string name="home">Home</string>
+    <string name="horaire_de_retrait">Horaire de retrait :</string>
+    <string name="horaires_chiffres">20h - 22h</string>
+    <string name="contact">CONTACT</string>
+    <string name="pay">PAY</string>
+    <string name="henry">Henry</string>
+    <string name="hello_blank_fragment">...</string>
+
+
+    <!-- portions menu déroulant liste fixe, à changer en java après-->
+    <string-array name="portions_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+
+
 </resources>

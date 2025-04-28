@@ -26,7 +26,8 @@
         <!-- Ces trois activities doivent avoir exported=true aussi -->
         <activity android:name=".MainActivity" android:exported="true" />
         <activity android:name=".LoginActivity" android:exported="true" />
-        <activity android:name=".HomeActivity" android:exported="true" />
+        <activity android:name=".MenuActivity" android:exported="true" />
+        <activity android:name=".AddDishActivity" android:exported="true" />
 
     </application>
 
