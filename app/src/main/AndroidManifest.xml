@@ -23,10 +23,18 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <!-- Ces trois activities doivent avoir exported=true aussi -->
         <activity android:name=".Subscribe" android:exported="true" />
         <activity android:name=".Login" android:exported="true" />
-        <activity android:name=".MenuActivity" android:exported="true" />
         <activity android:name=".AddDishActivity" android:exported="true" />
 
     </application>

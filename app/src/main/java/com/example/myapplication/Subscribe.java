@@ -61,14 +61,14 @@ public class Subscribe extends AppCompatActivity {
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
                             Toast.makeText(this, "Account created successfully!", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(this, MenuActivity.class));
+                            // 🚀 Ouvre maintenant MainActivity qui gère MenuFragment
+                            startActivity(new Intent(this, MainActivity.class));
                             finish();
                         } else {
                             Toast.makeText(this, "Signup failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
                     });
         });
-
     }
 }
 

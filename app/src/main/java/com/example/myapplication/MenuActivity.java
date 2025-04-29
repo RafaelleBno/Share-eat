@@ -13,7 +13,7 @@ public class MenuActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu);
+        setContentView(R.layout.fragment_menu);
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
