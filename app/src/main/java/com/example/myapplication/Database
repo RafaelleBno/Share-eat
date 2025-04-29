@@ -1,0 +1,80 @@
+package com.example.myapplication;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+public class Database extends SQLiteOpenHelper {
+
+    public static final String DATABASE_NAME = "AppDatabase.db";
+    public static final String TABLE_NAME = "utilisateurs";
+    public static final String COL_ID = "id";
+    public static final String COL_USERNAME = "username";
+    public static final String COL_PASSWORD = "mot_de_passe";
+
+    public Database(Context context) {
+        super(context, DATABASE_NAME, null, 1);
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL("CREATE TABLE " + TABLE_NAME + " (" +
+                COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COL_USERNAME + " TEXT, " +
+                COL_PASSWORD + " TEXT)");
+
+
+        //on insere les profils avec les username ainsi que les mots de passe associés au profil prédéfini
+        ContentValues values1 = new ContentValues();
+        values1.put(COL_USERNAME, "e-rbueno");
+        values1.put(COL_PASSWORD, "1234");
+        db.insert(TABLE_NAME, null, values1);
+
+        ContentValues values2 = new ContentValues();
+        values2.put(COL_USERNAME, "e-cthiebault");
+        values2.put(COL_PASSWORD, "5678");
+        db.insert(TABLE_NAME, null, values2);
+
+        ContentValues values3 = new ContentValues();
+        values2.put(COL_USERNAME, "e-mjaafar");
+        values2.put(COL_PASSWORD, "5293");
+        db.insert(TABLE_NAME, null, values3);
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        onCreate(db);
+    }
+
+    public boolean insertUser(String username, String password) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COL_USERNAME, username);
+        values.put(COL_PASSWORD, password);
+        long result = db.insert(TABLE_NAME, null, values);
+        return result != -1;
+    }
+
+    public boolean checkUser(String username, String password) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME +
+                        " WHERE " + COL_USERNAME + "=? AND " + COL_PASSWORD + "=?",
+                new String[]{username, password});
+        return cursor.getCount() > 0;
+    }
+    public boolean checkUserCredentials(String username, String password) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(
+                "SELECT * FROM " + TABLE_NAME + " WHERE " + COL_USERNAME + " = ? AND " + COL_PASSWORD + " = ?",
+                new String[]{username, password}
+        );
+        boolean result = cursor.getCount() > 0;
+        cursor.close();
+        db.close();
+        return result;
+    }
+
+}
