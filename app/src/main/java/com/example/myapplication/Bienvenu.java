@@ -9,14 +9,14 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class SplashActivity extends AppCompatActivity {
+public class Bienvenu extends AppCompatActivity {
 
     private ImageView splashLogo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
+        setContentView(R.layout.activity_bienvenu);
 
         splashLogo = findViewById(R.id.splashLogo);
 
@@ -28,7 +28,7 @@ public class SplashActivity extends AppCompatActivity {
             splashLogo.startAnimation(fadeOut);
 
             new Handler().postDelayed(() -> {
-                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                Intent intent = new Intent(Bienvenu.this, Subscribe.class);
                 startActivity(intent);
                 finish();
             }, 800); // attendre la fin de l'anim

@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class MainActivity extends AppCompatActivity {
+public class Subscribe extends AppCompatActivity {
 
     private EditText emailInput, phoneInput, passwordInput;
     private Button nextButton;
@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_subscribe);
 
         auth = FirebaseAuth.getInstance();
 
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         TextView goToLogin = findViewById(R.id.goToLogin);
         goToLogin.setOnClickListener(v -> {
-            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            startActivity(new Intent(Subscribe.this, Login.class));
         });
 
         eyeIcon.setOnClickListener(view -> {

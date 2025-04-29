@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class LoginActivity extends AppCompatActivity {
+public class Login extends AppCompatActivity {
 
     private EditText loginEmailInput, loginPasswordInput;
     private ImageView loginEyeIcon;
@@ -67,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         goToSignup.setOnClickListener(v -> {
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            startActivity(new Intent(Login.this, Subscribe.class));
         });
     }
 }
