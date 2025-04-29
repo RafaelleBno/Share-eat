@@ -12,12 +12,13 @@
         android:id="@+id/logo_croix"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@drawable/pates_bolognaise"
+        android:src="@drawable/croix_blanche"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        android:contentDescription="@string/fermer_page"/>
 
     <Button
         android:id="@+id/help_button"
