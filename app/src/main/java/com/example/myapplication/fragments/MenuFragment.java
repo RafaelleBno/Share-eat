@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,7 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class PlatEnDetailFragment extends Fragment {
+import com.example.myapplication.R;
+
+public class MenuFragment extends Fragment {
 
     @Nullable
     @Override
@@ -18,6 +20,16 @@ public class PlatEnDetailFragment extends Fragment {
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState
     ) {
-        return inflater.inflate(R.layout.fragment_plat_en_detail, container, false);
+        return inflater.inflate(R.layout.fragment_menu, container, false);
+    }
+
+    @Override
+    public void onViewCreated(
+            @NonNull View view,
+            @Nullable Bundle savedInstanceState
+    ) {
+        super.onViewCreated(view, savedInstanceState);
+
+        // À compléter plus tard si besoin
     }
 }

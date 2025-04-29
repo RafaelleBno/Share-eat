@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,7 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class FavorisFragment extends Fragment {
+import com.example.myapplication.R;
+
+public class AjouterPlatFragment extends Fragment {
 
     @Nullable
     @Override
@@ -19,6 +21,6 @@ public class FavorisFragment extends Fragment {
             @Nullable Bundle savedInstanceState
     ) {
         // ⚠️ Assure-toi que le fichier XML s'appelle bien "fragment_ajouter_plat"
-        return inflater.inflate(R.layout.fragment_favoris, container, false);
+        return inflater.inflate(R.layout.fragment_ajouter_plat, container, false);
     }
 }

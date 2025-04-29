@@ -1,17 +1,244 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/green"
-    tools:context=".PlatEnDetailFragment">
+    tools:context=".fragments.PlatEnDetailFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:id="@+id/pates_bolognaise_detail"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/pates_bolognaise"
+        tools:ignore="MissingConstraints" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/title_pates_bolognaise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pates_bolognaises"
+        android:textSize="22sp"
+        style="@style/TextStyleWhiteBold"
+        app:layout_constraintTop_toBottomOf="@id/pates_bolognaise_detail"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"/>
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/prix_pates_bolognaises"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/trois_euros"
+        android:textSize="22sp"
+        style="@style/TextStyleWhiteBold"
+        app:layout_constraintTop_toBottomOf="@id/pates_bolognaise_detail"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="340dp" />
+
+    <TextView
+        android:id="@+id/allergenes_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/allergenes"
+        android:textSize="17sp"
+        style="@style/TextStyleWhiteRegular"
+        app:layout_constraintTop_toBottomOf="@id/title_pates_bolognaise"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp" />
+
+    <Button
+        android:id="@+id/gluten_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/gluten"
+        style="@style/TextStyleBlackRegular"
+        android:textSize="17sp"
+        app:layout_constraintTop_toBottomOf="@id/allergenes_detail"
+        app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint="@color/white"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="20dp"/>
+
+    <Button
+        android:id="@+id/lactose_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lactose"
+        style="@style/TextStyleBlackRegular"
+        android:textSize="17sp"
+        app:layout_constraintTop_toBottomOf="@id/allergenes_detail"
+        app:layout_constraintStart_toEndOf="@id/gluten_button"
+        android:backgroundTint="@color/white"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="10dp"/>
+
+    <TextView
+        android:id="@+id/descrpition_plat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/descritpion"
+        android:textSize="17sp"
+        style="@style/TextStyleWhiteRegular"
+        app:layout_constraintTop_toBottomOf="@id/gluten_button"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp" />
+
+    <TextView
+        android:id="@+id/text_descrpition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/descritpion_detail"
+        android:textSize="15sp"
+        style="@style/TextStyleWhiteRegular"
+        app:layout_constraintTop_toBottomOf="@id/descrpition_plat"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp" />
+
+    <TextView
+        android:id="@+id/portions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/portions"
+        android:textSize="17sp"
+        style="@style/TextStyleWhiteRegular"
+        app:layout_constraintTop_toBottomOf="@id/text_descrpition"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp" />
+
+    <Spinner
+        android:id="@+id/nombre_portions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dropdown"
+        android:entries="@array/portions_array"
+        android:popupBackground="#FFFFFF"
+        android:background="#FFFFFF"
+        android:theme="@style/SpinnerBlackTextTheme"
+        app:layout_constraintTop_toBottomOf="@id/portions"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"/>
+
+
+    <TextView
+        android:id="@+id/mode_de_retrait"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/mode_de_retrait"
+        android:textSize="17sp"
+        style="@style/TextStyleWhiteRegular"
+        app:layout_constraintTop_toBottomOf="@id/nombre_portions"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp" />
+
+    <Button
+        android:id="@+id/pickup_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pick_up"
+        style="@style/TextStyleBlackRegular"
+        android:textSize="17sp"
+        app:layout_constraintTop_toBottomOf="@id/mode_de_retrait"
+        app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint="@color/white"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="20dp"/>
+
+    <Button
+        android:id="@+id/home_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/home"
+        style="@style/TextStyleBlackRegular"
+        android:textSize="17sp"
+        app:layout_constraintTop_toBottomOf="@id/mode_de_retrait"
+        app:layout_constraintStart_toEndOf="@id/pickup_button"
+        android:backgroundTint="@color/white"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="10dp"/>
+
+    <TextView
+        android:id="@+id/horaire_de_retrait"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/horaire_de_retrait"
+        android:textSize="17sp"
+        style="@style/TextStyleWhiteRegular"
+        app:layout_constraintTop_toBottomOf="@id/pickup_button"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp" />
+
+    <Button
+        android:id="@+id/horaires"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/horaires_chiffres"
+        style="@style/TextStyleBlackRegular"
+        android:textSize="17sp"
+        app:layout_constraintTop_toBottomOf="@id/horaire_de_retrait"
+        app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint="@color/white"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="20dp"/>
+
+    <TextView
+        android:id="@+id/nom_profil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/henry"
+        android:textSize="17sp"
+        style="@style/TextStyleWhiteRegular"
+        app:layout_constraintTop_toBottomOf="@id/horaires"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp" />
+
+    <ImageView
+        android:id="@+id/etoiles_henry"
+        android:layout_width="200dp"
+        android:layout_height="20dp"
+        android:src="@drawable/quatre_etoiles"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/horaires"
+        app:layout_constraintStart_toEndOf="@id/nom_profil"
+        tools:ignore="MissingConstraints"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="90dp"/>
+
+    <Button
+        android:id="@+id/contact_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/contact"
+        style="@style/TextStyleWhiteBold"
+        android:textSize="17sp"
+        app:layout_constraintTop_toBottomOf="@id/nom_profil"
+        app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint="@color/black"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="90dp"/>
+
+    <Button
+        android:id="@+id/pay_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pay"
+        style="@style/TextStyleWhiteBold"
+        android:textSize="17sp"
+        app:layout_constraintTop_toBottomOf="@id/nom_profil"
+        app:layout_constraintStart_toEndOf="@id/contact_button"
+        android:backgroundTint="@color/black"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="10dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
