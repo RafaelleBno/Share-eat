@@ -27,26 +27,29 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        /* ---------- initialisation ---------- */
         auth = FirebaseAuth.getInstance();
-
-        loginEmailInput = findViewById(R.id.loginEmailInput);
+        loginEmailInput   = findViewById(R.id.loginEmailInput);
         loginPasswordInput = findViewById(R.id.loginPasswordInput);
-        loginEyeIcon = findViewById(R.id.loginEyeIcon);
-        loginBtn = findViewById(R.id.loginBtn);
-        goToSignup = findViewById(R.id.goToSignup);
+        loginEyeIcon      = findViewById(R.id.loginEyeIcon);
+        loginBtn          = findViewById(R.id.loginBtn);
+        goToSignup        = findViewById(R.id.goToSignup);
 
+        /* ---------- œil : afficher / masquer le mot de passe ---------- */
         loginEyeIcon.setOnClickListener(v -> {
             passwordVisible = !passwordVisible;
             if (passwordVisible) {
                 loginPasswordInput.setInputType(InputType.TYPE_CLASS_TEXT);
             } else {
-                loginPasswordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                loginPasswordInput.setInputType(
+                        InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
             }
             loginPasswordInput.setSelection(loginPasswordInput.getText().length());
         });
 
+        /* ---------- bouton Login ---------- */
         loginBtn.setOnClickListener(v -> {
-            String email = loginEmailInput.getText().toString().trim();
+            String email    = loginEmailInput.getText().toString().trim();
             String password = loginPasswordInput.getText().toString().trim();
 
             if (email.isEmpty() || password.isEmpty()) {
@@ -58,17 +61,24 @@ public class Login extends AppCompatActivity {
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
                             Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show();
-                            // 🚀 Ouvre maintenant MainActivity qui gère MenuFragment
-                            startActivity(new Intent(this, MainActivity.class));
-                            finish();
+
+                            // ▶ redirection vers MainActivity + tab Home
+                            Intent intent = new Intent(this, MainActivity.class);
+                            intent.putExtra("nav_item", R.id.menu_home);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+                                    | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+
                         } else {
-                            Toast.makeText(this, "Login failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(this,
+                                    "Login failed: " + task.getException().getMessage(),
+                                    Toast.LENGTH_LONG).show();
                         }
                     });
         });
 
-        goToSignup.setOnClickListener(v -> {
-            startActivity(new Intent(Login.this, Subscribe.class));
-        });
+        /* ---------- lien "Go to Sign-up" ---------- */
+        goToSignup.setOnClickListener(v ->
+                startActivity(new Intent(Login.this, Subscribe.class)));
     }
 }

@@ -28,7 +28,6 @@ public class MenuFragment extends Fragment {
     ) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Ne rien mettre ici si tu n’as pas besoin de logique dans ce fragment pour l’instant
+        // À compléter plus tard si besoin
     }
 }
-

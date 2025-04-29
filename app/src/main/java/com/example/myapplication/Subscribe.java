@@ -25,31 +25,34 @@ public class Subscribe extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subscribe);
 
-        auth = FirebaseAuth.getInstance();
-
-        emailInput = findViewById(R.id.emailInput);
-        phoneInput = findViewById(R.id.phoneInput);
+        /* ---------- initialisation ---------- */
+        auth          = FirebaseAuth.getInstance();
+        emailInput    = findViewById(R.id.emailInput);
+        phoneInput    = findViewById(R.id.phoneInput);
         passwordInput = findViewById(R.id.passwordInput);
         ImageView eyeIcon = findViewById(R.id.eyeIcon);
-        nextButton = findViewById(R.id.nextButton);
+        nextButton    = findViewById(R.id.nextButton);
 
+        /* ---------- lien "Go to Login" ---------- */
         TextView goToLogin = findViewById(R.id.goToLogin);
-        goToLogin.setOnClickListener(v -> {
-            startActivity(new Intent(Subscribe.this, Login.class));
-        });
+        goToLogin.setOnClickListener(v ->
+                startActivity(new Intent(Subscribe.this, Login.class)));
 
-        eyeIcon.setOnClickListener(view -> {
+        /* ---------- œil : afficher / masquer le mot de passe ---------- */
+        eyeIcon.setOnClickListener(v -> {
             passwordVisible = !passwordVisible;
             if (passwordVisible) {
                 passwordInput.setInputType(InputType.TYPE_CLASS_TEXT);
             } else {
-                passwordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                passwordInput.setInputType(
+                        InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
             }
             passwordInput.setSelection(passwordInput.getText().length());
         });
 
-        nextButton.setOnClickListener(view -> {
-            String email = emailInput.getText().toString().trim();
+        /* ---------- bouton "Next / Sign up" ---------- */
+        nextButton.setOnClickListener(v -> {
+            String email    = emailInput.getText().toString().trim();
             String password = passwordInput.getText().toString().trim();
 
             if (email.isEmpty() || password.isEmpty()) {
@@ -61,14 +64,20 @@ public class Subscribe extends AppCompatActivity {
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
                             Toast.makeText(this, "Account created successfully!", Toast.LENGTH_SHORT).show();
-                            // 🚀 Ouvre maintenant MainActivity qui gère MenuFragment
-                            startActivity(new Intent(this, MainActivity.class));
-                            finish();
+
+                            // ▶ redirection vers MainActivity + onglet Home
+                            Intent intent = new Intent(this, MainActivity.class);
+                            intent.putExtra("nav_item", R.id.menu_home);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+                                    | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+
                         } else {
-                            Toast.makeText(this, "Signup failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(this,
+                                    "Signup failed: " + task.getException().getMessage(),
+                                    Toast.LENGTH_LONG).show();
                         }
                     });
         });
     }
 }
-
