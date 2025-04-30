@@ -18,6 +18,7 @@
         android:layout_height="250dp"
         android:scaleType="centerCrop"
         android:src="@drawable/pates_bolognaise"
+        android:contentDescription="@string/pates_bolognaises"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -121,7 +122,7 @@
     <Spinner
         android:id="@+id/nombre_portions"
         android:layout_width="60dp"
-        android:layout_height="40dp"
+        android:layout_height="48dp"
         android:spinnerMode="dropdown"
         android:entries="@array/portions_array"
         android:popupBackground="#FFFFFF"
@@ -212,6 +213,7 @@
         android:layout_width="200dp"
         android:layout_height="20dp"
         android:src="@drawable/quatre_etoiles"
+        android:contentDescription="@string/quatre_etoiles"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/horaires"
         app:layout_constraintStart_toEndOf="@id/nom_profil"

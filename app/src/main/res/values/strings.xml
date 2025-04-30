@@ -18,6 +18,8 @@
     <string name="contact">CONTACT</string>
     <string name="pay">PAY</string>
     <string name="henry">Henry</string>
+    <string name="quatre_etoiles">4 étoiles</string>
+
 
     <!-- portions menu déroulant liste fixe, à changer en java après-->
     <string-array name="portions_array">
