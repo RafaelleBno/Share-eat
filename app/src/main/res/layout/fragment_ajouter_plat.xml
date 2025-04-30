@@ -1,17 +1,263 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/green"
     tools:context=".fragments.AjouterPlatFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:padding="16dp">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <!-- Image -->
+            <ImageView
+                android:id="@+id/platImageView"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher_background"
+                android:contentDescription="Image du plat"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Nom + prix -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+
+                <EditText
+                    android:id="@+id/nomPlat"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:hint="Nom du plat"
+                    android:textColor="#000"
+                    android:background="@null"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/inter_bold" />
+
+                <EditText
+                    android:id="@+id/prixPlat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="2 €"
+                    android:inputType="numberDecimal"
+                    android:background="@null"
+                    android:textColor="#000"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/inter_bold"
+                    android:layout_marginStart="12dp" />
+            </LinearLayout>
+
+            <!-- Allergènes -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Allergènes :"
+                android:textColor="#000"
+                android:textSize="16sp"
+                android:fontFamily="@font/inter_regular"
+                android:layout_marginBottom="8dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="4"
+                android:layout_marginBottom="12dp">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Gluten"
+                    android:textColor="#000"
+                    android:background="@android:color/transparent"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/inter_regular"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Arachide"
+                    android:textColor="#000"
+                    android:background="@android:color/transparent"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/inter_regular"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Œuf"
+                    android:textColor="#000"
+                    android:background="@android:color/transparent"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/inter_regular"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Lait"
+                    android:textColor="#000"
+                    android:background="@android:color/transparent"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/inter_regular"/>
+            </LinearLayout>
+
+
+            <!-- Régimes -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Régimes alimentaire :"
+                android:textColor="#000"
+                android:textSize="16sp"
+                android:fontFamily="@font/inter_regular"
+                android:layout_marginBottom="4dp" />
+
+            <EditText
+                android:id="@+id/regimeEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="+ Kasher"
+                android:background="@android:drawable/edit_text"
+                android:padding="10dp"
+                android:fontFamily="@font/inter_regular"
+                android:textColor="#000"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Description -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Description :"
+                android:textColor="#000"
+                android:textSize="16sp"
+                android:fontFamily="@font/inter_regular" />
+
+            <EditText
+                android:id="@+id/descriptionPlat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minLines="2"
+                android:hint="Description du plat..."
+                android:gravity="top"
+                android:background="@android:drawable/edit_text"
+                android:padding="10dp"
+                android:fontFamily="@font/inter_light"
+                android:textColor="#000"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Portions -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp">
+
+                <Spinner
+                    android:id="@+id/portionSpinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" x 300g"
+                    android:textSize="16sp"
+                    android:textColor="#000"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/inter_regular"/>
+            </LinearLayout>
+
+            <!-- Mode de retrait -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mode de retrait :"
+                android:textColor="#000"
+                android:textSize="16sp"
+                android:fontFamily="@font/inter_regular"
+                android:layout_marginBottom="4dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_marginBottom="12dp">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="PickUp"
+                    android:textColor="#000"
+                    android:background="@android:color/transparent"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/inter_regular" />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Home"
+                    android:textColor="#000"
+                    android:background="@android:color/transparent"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/inter_regular" />
+            </LinearLayout>
+
+
+            <!-- Horaire -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Horaire de retrait :"
+                android:textColor="#000"
+                android:textSize="16sp"
+                android:fontFamily="@font/inter_regular"
+                android:layout_marginBottom="4dp" />
+
+            <EditText
+                android:id="@+id/horaireRetrait"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="19:00 - 19h15"
+                android:background="@android:drawable/edit_text"
+                android:padding="10dp"
+                android:fontFamily="@font/inter_regular"
+                android:textColor="#000"
+                android:layout_marginBottom="24dp" />
+
+            <!-- ADD -->
+            <Button
+                android:id="@+id/addDishButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ADD"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:textColor="#fff"
+                android:background="#000"
+                android:fontFamily="@font/inter_bold"
+                android:padding="12dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="24dp" />
+
+        </LinearLayout>
+    </ScrollView>
 </FrameLayout>
+
