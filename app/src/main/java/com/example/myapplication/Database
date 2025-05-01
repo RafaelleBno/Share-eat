@@ -13,6 +13,8 @@ public class Database extends SQLiteOpenHelper {
     public static final String COL_ID = "id";
     public static final String COL_USERNAME = "username";
     public static final String COL_PASSWORD = "mot_de_passe";
+    public static final String COL_HOUSING = "housing";
+    public static final String COL_FLOOR = "floor";
 
     public Database(Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -20,27 +22,138 @@ public class Database extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        // Création de la table
         db.execSQL("CREATE TABLE " + TABLE_NAME + " (" +
                 COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COL_USERNAME + " TEXT, " +
-                COL_PASSWORD + " TEXT)");
+                COL_PASSWORD + " TEXT, " +
+                COL_HOUSING + " TEXT, " +
+                COL_FLOOR + " TEXT)");
 
+        // Insertion de tout les utilisateurs de la residence therese-papillon avec leurs noms d'utilisateurs, mot de passe, numero de logement et d'etage
+        insertInitialUser(db, "e-nverneva", "0000", "0306", "3");
+        insertInitialUser(db, "e-cthiebault", "1111", "1212", "2");
+        insertInitialUser(db, "e-rbueno", "2222", "1404", "4");
+        insertInitialUser(db, "e-llanglois", "3333", "0604", "6");
+        insertInitialUser(db, "e-mjaafar", "5293", "1415", "4");
+        insertInitialUser(db, "e-makhdad", "1234", "1403", "4");
+        insertInitialUser(db, "e-rarif", "2259", "1004", "0");
+        insertInitialUser(db, "e-hattey", "5620", "1224", "2");
+        insertInitialUser(db, "e-aamri", "8569", "1104", "1");
+        insertInitialUser(db, "e-jamara", "5813", "1305", "3");
+        insertInitialUser(db, "e-masselin", "2436", "1301", "3");
+        insertInitialUser(db, "e-bblanc", "2139", "1411", "4");
+        insertInitialUser(db, "e-rbordage", "1486", "1303", "3");
+        insertInitialUser(db, "e-nbeck", "2542", "1322", "3");
+        insertInitialUser(db, "e-abouchniba", "4529", "1205", "2");
+        insertInitialUser(db, "e-abenmohamed", "9669", "1417", "4");
+        insertInitialUser(db, "e-sbedouhene", "2464", "1313", "3");
+        insertInitialUser(db, "e-sboulegroune", "1355", "1402", "4");
+        insertInitialUser(db, "e-ybouraquil", "2555", "1201", "2");
+        insertInitialUser(db, "e-bbelgourch", "4455", "1211", "2");
+        insertInitialUser(db, "e-tbouti", "1185", "1210", "2");
+        insertInitialUser(db, "e-lbellier", "8854", "1204", "2");
+        insertInitialUser(db, "e-bberdah", "3241", "1219", "2");
+        insertInitialUser(db, "e-tblanchier", "1234", "", "");
+        insertInitialUser(db, "e-mcintract", "8942", "1309", "3");
+        insertInitialUser(db, "e-mchedessi", "4861", "1222", "2");
+        insertInitialUser(db, "e-zcoste", "4271", "1409", "4");
+        insertInitialUser(db, "e-achauvin", "5512", "1501", "5");
+        insertInitialUser(db, "e-gcarrologgi", "2389", "1503", "5");
+        insertInitialUser(db, "e-ecottret", "4180", "1221", "2");
+        insertInitialUser(db, "e-mchampeau", "2234", "1216", "2");
+        insertInitialUser(db, "e-lcharlemagne", "7880", "1207", "2");
+        insertInitialUser(db, "e-cchaboche", "1170", "1107", "1");
+        insertInitialUser(db, "e-cdejesus", "5540", "1302", "3");
+        insertInitialUser(db, "e-ldurot", "0001", "1506", "5");
+        insertInitialUser(db, "e-sdiop", "0012", "1420", "4");
+        insertInitialUser(db, "e-vditte", "0013", "1304", "3");
+        insertInitialUser(db, "e-mdefeohachemi", "1100", "1006", "0");
+        insertInitialUser(db, "e-idoale", "0029", "1213", "2");
+        insertInitialUser(db, "e-sdubois", "2200", "1412", "4");
+        insertInitialUser(db, "e-rdiyaraziz", "4412", "1410", "4");
+        insertInitialUser(db, "e-mdreux", "5514", "1209", "2");
+        insertInitialUser(db, "e-meljahed", "1010", "1421", "4");
+        insertInitialUser(db, "e-heichwald", "5501", "1108", "1");
+        insertInitialUser(db, "e-mfelizardo", "2220", "1109", "1");
+        insertInitialUser(db, "e-mfavet", "1112", "1502", "5");
+        insertInitialUser(db, "e-jfuyalindjek", "9999", "1105", "1");
+        insertInitialUser(db, "e-mforment", "8888", "1424", "4");
+        insertInitialUser(db, "e-cgateau", "7777", "1324", "3");
+        insertInitialUser(db, "e-agardais", "6666", "1318", "3");
+        insertInitialUser(db, "e-egilliot", "5555", "1310", "3");
+        insertInitialUser(db, "e-sharify", "4444", "1208", "2");
+        insertInitialUser(db, "e-lhernout", "0004", "1513", "5");
+        insertInitialUser(db, "e-ahenry", "0006", "1003", "0");
+        insertInitialUser(db, "e-gjard", "0007", "1111", "1");
+        insertInitialUser(db, "e-kjeevanandham", "1113", "1507", "5");
+        insertInitialUser(db, "e-djeanty", "7778", "1115", "1");
+        insertInitialUser(db, "e-pkayoko", "7779", "1223", "2");
+        insertInitialUser(db, "e-eketor", "7776", "1413", "4");
+        insertInitialUser(db, "e-kkhaldi", "7775", "1002", "0");
+        insertInitialUser(db, "e-skechichian", "7774", "1101", "1");
+        insertInitialUser(db, "e-akaouamy", "7773", "1306", "3");
+        insertInitialUser(db, "e-gkaddouche", "7771", "1110", "1");
+        insertInitialUser(db, "e-akermoud", "7770", "1217", "2");
+        insertInitialUser(db, "e-mlebreton", "6668", "1215", "2");
+        insertInitialUser(db, "e-pliandier", "6667", "1311", "3");
+        insertInitialUser(db, "e-eluneau", "6665", "1414", "4");
+        insertInitialUser(db, "e-wlaville", "6664", "1001", "0");
+        insertInitialUser(db, "e-elopez", "6663", "1506", "5");
+        insertInitialUser(db, "e-llapeyre", "6662", "1317", "3");
+        insertInitialUser(db, "e-rleguereau", "6661", "1512", "5");
+        insertInitialUser(db, "e-nlitherland", "6660", "1315", "3");
+        insertInitialUser(db, "e-fluca", "5559", "1219", "2");
+        insertInitialUser(db, "e-nmartin", "5558", "1103", "1");
+        insertInitialUser(db, "e-smiesesramirez", "5557", "1215", "2");
+        insertInitialUser(db, "e-jmilan", "5556", "1508", "5");
+        insertInitialUser(db, "e-amouhtaj", "5554", "1408", "4");
+        insertInitialUser(db, "e-ymarceau", "5553", "1319", "3");
+        insertInitialUser(db, "e-jmastrilli", "5552", "1505", "5");
+        insertInitialUser(db, "e-amongrolle", "5551", "1406", "4");
+        insertInitialUser(db, "e-nmarquez", "5550", "1422", "4");
+        insertInitialUser(db, "e-jnguala", "4449", "1114", "1");
+        insertInitialUser(db, "e-rnishiumi", "4448", "1419", "4");
+        insertInitialUser(db, "e-hnogueira", "4447", "1106", "1");
+        insertInitialUser(db, "e-ynouri", "4446", "1112", "1");
+        insertInitialUser(db, "e-ngrekoti", "4445", "1307", "3");
+        insertInitialUser(db, "e-anejjarie", "4443", "1416", "4");
+        insertInitialUser(db, "e-mourceau", "4442", "1202", "2");
+        insertInitialUser(db, "e-lpapion", "4441", "1405", "4");
+        insertInitialUser(db, "e-mpatillot", "4440", "1319", "3");
+        insertInitialUser(db, "e-mpicq", "3339", "1508", "5");
+        insertInitialUser(db, "e-apetter", "3338", "1102", "1");
+        insertInitialUser(db, "e-lportelli", "3337", "1304", "3");
+        insertInitialUser(db, "e-arachfal", "3336", "1513", "5");
+        insertInitialUser(db, "e-oranelli", "3335", "1407", "4");
+        insertInitialUser(db, "e-eroyanez", "3334", "1218", "2");
+        insertInitialUser(db, "e-lrusso", "3332", "1203", "2");
+        insertInitialUser(db, "e-mricoult", "3331", "1214", "2");
+        insertInitialUser(db, "e-mrizwan", "3330", "1206", "2");
+        insertInitialUser(db, "e-aszwarbart", "2229", "1220", "2");
+        insertInitialUser(db, "e-nsensmeye", "2228", "1420", "4");
+        insertInitialUser(db, "e-ssahnoune", "2227", "1320", "3");
+        insertInitialUser(db, "e-asauvan", "2226", "1308", "3");
+        insertInitialUser(db, "e-tstevens", "2205", "1113", "1");
+        insertInitialUser(db, "e-dsandiakou", "2204", "1117", "1");
+        insertInitialUser(db, "e-ssmaani", "2203", "1005", "0");
+        insertInitialUser(db, "e-jsturm", "2202", "1312", "3");
+        insertInitialUser(db, "e-ytbahritiverdier", "2201", "1321", "3");
+        insertInitialUser(db, "e-mtachon", "1119", "1509", "5");
+        insertInitialUser(db, "e-cyonenaka", "1118", "1419", "4");
+        insertInitialUser(db, "e-mveiga", "1117", "1314", "3");
+        insertInitialUser(db, "e-avothanh", "1116", "1316", "3");
 
-        //on insere les profils avec les username ainsi que les mots de passe associés au profil prédéfini
-        ContentValues values1 = new ContentValues();
-        values1.put(COL_USERNAME, "e-rbueno");
-        values1.put(COL_PASSWORD, "1234");
-        db.insert(TABLE_NAME, null, values1);
+    }
 
-        ContentValues values2 = new ContentValues();
-        values2.put(COL_USERNAME, "e-cthiebault");
-        values2.put(COL_PASSWORD, "5678");
-        db.insert(TABLE_NAME, null, values2);
-
-        ContentValues values3 = new ContentValues();
-        values2.put(COL_USERNAME, "e-mjaafar");
-        values2.put(COL_PASSWORD, "5293");
-        db.insert(TABLE_NAME, null, values3);
+    // Méthode privée pour insérer un utilisateur au moment de la création de la base
+    private void insertInitialUser(SQLiteDatabase db, String username, String password, String housing, String floor) {
+        ContentValues values = new ContentValues();
+        values.put(COL_USERNAME, username);
+        values.put(COL_PASSWORD, password);
+        values.put(COL_HOUSING, housing);
+        values.put(COL_FLOOR, floor);
+        db.insert(TABLE_NAME, null, values);
     }
 
     @Override
@@ -49,32 +162,30 @@ public class Database extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertUser(String username, String password) {
+    // Ajout manuel d'un utilisateur
+    public boolean insertUser(String username, String password, String housing, String floor) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COL_USERNAME, username);
         values.put(COL_PASSWORD, password);
+        values.put(COL_HOUSING, housing);
+        values.put(COL_FLOOR, floor);
         long result = db.insert(TABLE_NAME, null, values);
         return result != -1;
     }
 
+    // Vérifie si l'utilisateur existe
     public boolean checkUser(String username, String password) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME +
-                        " WHERE " + COL_USERNAME + "=? AND " + COL_PASSWORD + "=?",
+                        " WHERE " + COL_USERNAME + " = ? AND " + COL_PASSWORD + " = ?",
                 new String[]{username, password});
-        return cursor.getCount() > 0;
-    }
-    public boolean checkUserCredentials(String username, String password) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(
-                "SELECT * FROM " + TABLE_NAME + " WHERE " + COL_USERNAME + " = ? AND " + COL_PASSWORD + " = ?",
-                new String[]{username, password}
-        );
         boolean result = cursor.getCount() > 0;
         cursor.close();
-        db.close();
         return result;
     }
 
+    public boolean checkUserCredentials(String username, String password) {
+        return checkUser(username, password);
+    }
 }
