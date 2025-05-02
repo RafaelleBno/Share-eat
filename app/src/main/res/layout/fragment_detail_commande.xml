@@ -18,6 +18,8 @@
         android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
         android:contentDescription="@string/fermer_page"
+        android:clickable="true"
+        android:focusable="true"
         tools:ignore="MissingConstraints" />
 
     <Button

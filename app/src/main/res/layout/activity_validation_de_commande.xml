@@ -17,6 +17,8 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
+        android:clickable="true"
+        android:focusable="true"
         tools:ignore="MissingConstraints"
         android:contentDescription="@string/fermer_page"/>
 
