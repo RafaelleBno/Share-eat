@@ -35,18 +35,14 @@ android {
 
 dependencies {
     // 🔥 Librairies Android de base
-    implementation("androidx.appcompat:appcompat:1.6.1") // Pour AppCompatActivity
-    implementation("androidx.fragment:fragment:1.5.7") // Pour Fragment + getSupportFragmentManager()
-    implementation("com.google.android.material:material:1.10.0") // Pour BottomNavigationView
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4") // Pour ConstraintLayout
-    implementation("androidx.activity:activity:1.7.2") // Pour ActivityCompat, etc.
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("androidx.fragment:fragment:1.5.7")
+    implementation("com.google.android.material:material:1.10.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("androidx.activity:activity:1.7.2")
 
     // 🔐 Firebase Auth
     implementation("com.google.firebase:firebase-auth:22.3.0")
-
-
-    // -------------------------------------------
-
 
     // 🔥 Firebase Firestore
     implementation("com.google.firebase:firebase-firestore:24.11.0")
@@ -63,4 +59,5 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 }
+
 

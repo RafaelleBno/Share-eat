@@ -1,4 +1,18 @@
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="#FFFFFF" />  <!-- FOND BLANC -->
-    <corners android:radius="190dp" />  <!-- ARRONDI -->
-</shape>
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Selected state: red background -->
+    <item android:state_selected="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#AB3129"/>
+            <corners android:radius="20dp"/>
+        </shape>
+    </item>
+
+    <!-- Default state: white background -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#FFFFFF"/>
+            <corners android:radius="20dp"/>
+        </shape>
+    </item>
+</selector>

@@ -4,19 +4,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/green">
+    android:background="#96954F">
 
     <!-- Barre de recherche -->
     <EditText
         android:id="@+id/searchBar"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:hint=" Food, shopping, drinks, etc"
+        android:hint="Food, shopping, drinks, etc"
         android:drawableStart="@drawable/search"
-        android:padding="12dp"
         android:background="@drawable/search_background"
+        android:padding="12dp"
         android:textColor="#000000"
-        android:backgroundTint="@null"
+        android:textSize="14sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,7 +25,7 @@
         android:layout_marginTop="24dp"
         android:maxWidth="600dp" />
 
-    <!-- Boutons Vegan, Vegetarien, Halal, Karcher -->
+    <!-- Régimes alimentaires -->
     <LinearLayout
         android:id="@+id/categoryButtons"
         android:layout_width="0dp"
@@ -37,44 +37,71 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <Button
+        <TextView
             android:id="@+id/veganButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Vegan"
-            android:background="@android:color/transparent"
+            android:background="@drawable/filter_tab_background"
             android:textColor="#FFFFFF"
-            android:textStyle="bold" />
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="8dp"
+            android:textSize="14sp"
+            android:fontFamily="@font/inter_regular"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"/>
 
-        <Button
+
+        <TextView
             android:id="@+id/vegetarianButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Vegetarien"
-            android:background="@android:color/transparent"
+            android:text="Vegetarian"
+            android:background="@drawable/filter_tab_background"
             android:textColor="#FFFFFF"
-            android:textStyle="bold" />
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="8dp"
+            android:textSize="14sp"
+            android:fontFamily="@font/inter_regular"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"/>
 
-        <Button
+
+        <TextView
             android:id="@+id/halalButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Halal"
-            android:background="@android:color/transparent"
+            android:background="@drawable/filter_tab_background"
             android:textColor="#FFFFFF"
-            android:textStyle="bold" />
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="8dp"
+            android:textSize="14sp"
+            android:fontFamily="@font/inter_regular"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"/>
 
-        <Button
+
+        <TextView
             android:id="@+id/karcherButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Karcher"
-            android:background="@android:color/transparent"
+            android:background="@drawable/filter_tab_background"
             android:textColor="#FFFFFF"
-            android:textStyle="bold" />
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="8dp"
+            android:textSize="14sp"
+            android:fontFamily="@font/inter_regular"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"/>
+
     </LinearLayout>
 
-    <!-- Boutons PickUp, Home, Price -->
     <LinearLayout
         android:id="@+id/filterButtons"
         android:layout_width="0dp"
@@ -86,71 +113,64 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/pickupButton"
-            app:backgroundTint="@null"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="PickUp"
+            android:layout_height="32dp"
+            android:text="Pick-up"
+            android:textAllCaps="false"
             android:background="@drawable/button_pickup_home_price"
+            android:backgroundTint="@null"
             android:textColor="#000000"
-            android:minHeight="0dp"
-            android:minWidth="0dp"
-            android:includeFontPadding="false"
-            android:paddingTop="2dp"
-            android:paddingBottom="2dp"
-            android:paddingStart="24dp"
-            android:paddingEnd="24dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp" />
+            android:paddingHorizontal="24dp"
+            android:paddingTop="1dp"
+            android:paddingBottom="1dp"
+            android:textSize="14sp"
+            android:fontFamily="@font/inter_regular"/>
 
-        <Button
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/homeButton"
-            app:backgroundTint="@null"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginStart="11dp"
             android:text="Home"
+            android:textAllCaps="false"
             android:background="@drawable/button_pickup_home_price"
+            android:backgroundTint="@null"
             android:textColor="#000000"
-            android:minHeight="0dp"
-            android:minWidth="0dp"
-            android:includeFontPadding="false"
-            android:paddingTop="2dp"
-            android:paddingBottom="2dp"
-            android:paddingStart="24dp"
-            android:paddingEnd="24dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp" />
+            android:paddingHorizontal="24dp"
+            android:paddingTop="1dp"
+            android:paddingBottom="1dp"
+            android:textSize="14sp"
+            android:fontFamily="@font/inter_regular"/>
 
-        <Button
-            android:id="@+id/priceButton"
-            app:backgroundTint="@null"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Price"
-            android:background="@drawable/button_pickup_home_price"
-            android:textColor="#000000"
-            android:minHeight="0dp"
-            android:minWidth="0dp"
-            android:includeFontPadding="false"
-            android:paddingTop="2dp"
-            android:paddingBottom="2dp"
-            android:paddingStart="24dp"
-            android:paddingEnd="24dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp" />
     </LinearLayout>
 
-    <!-- Liste de plats -->
+
+    <!-- Bouton refresh -->
+    <Button
+        android:id="@+id/refreshButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rafraîchir"
+        android:layout_marginTop="8dp"
+        android:background="#000000"
+        android:textColor="#FFFFFF"
+        app:layout_constraintTop_toBottomOf="@id/filterButtons"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- RecyclerView des plats -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/dishRecyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/filterButtons"
+        android:padding="16dp"
+        app:layout_constraintTop_toBottomOf="@id/refreshButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:padding="16dp" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

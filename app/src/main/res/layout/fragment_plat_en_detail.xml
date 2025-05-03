@@ -12,254 +12,308 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/pates_bolognaise_detail"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/pates_bolognaise"
-        android:contentDescription="@string/pates_bolognaises"
-        tools:ignore="MissingConstraints" />
-
+        <!-- Image principale -->
         <ImageView
-            android:id="@+id/fleche_retour"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/fleche_retour"
-            android:contentDescription="@string/pates_bolognaises"
-            app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/pates_bolognaise_detail"
+            android:layout_width="0dp"
+            android:layout_height="250dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/pates_bolognaise"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Titre & Prix -->
+        <TextView
+            android:id="@+id/title_pates_bolognaise"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pâtes Bolognaises"
+            android:textSize="22sp"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
             android:layout_marginStart="20dp"
-            android:clickable="true"
-            android:focusable="true"
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintTop_toBottomOf="@id/pates_bolognaise_detail"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/title_pates_bolognaise"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/pates_bolognaises"
-        android:textSize="22sp"
-        style="@style/TextStyleWhiteBold"
-        app:layout_constraintTop_toBottomOf="@id/pates_bolognaise_detail"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"/>
+        <TextView
+            android:id="@+id/prix_pates_bolognaises"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3€"
+            android:textSize="22sp"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintTop_toBottomOf="@id/pates_bolognaise_detail"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
-        android:id="@+id/prix_pates_bolognaises"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/trois_euros"
-        android:textSize="22sp"
-        style="@style/TextStyleWhiteBold"
-        app:layout_constraintTop_toBottomOf="@id/pates_bolognaise_detail"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="340dp" />
+        <!-- Bloc Info Cuisinier -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cuisinierInfoBlock"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintTop_toBottomOf="@id/title_pates_bolognaise"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
-    <TextView
-        android:id="@+id/allergenes_detail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/allergenes"
-        android:textSize="17sp"
-        style="@style/TextStyleWhiteRegular"
-        app:layout_constraintTop_toBottomOf="@id/title_pates_bolognaise"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="20dp" />
+            <ImageView
+                android:id="@+id/locationIcon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_location"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/gluten_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/gluten"
-        style="@style/TextStyleBlackRegular"
-        android:textSize="17sp"
-        app:layout_constraintTop_toBottomOf="@id/allergenes_detail"
-        app:layout_constraintStart_toStartOf="parent"
-        android:backgroundTint="@color/white"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="20dp"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="8dp"
+                app:layout_constraintStart_toEndOf="@id/locationIcon"
+                app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/lactose_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/lactose"
-        style="@style/TextStyleBlackRegular"
-        android:textSize="17sp"
-        app:layout_constraintTop_toBottomOf="@id/allergenes_detail"
-        app:layout_constraintStart_toEndOf="@id/gluten_button"
-        android:backgroundTint="@color/white"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="10dp"/>
+                <TextView
+                    android:id="@+id/nomUser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Utilisateur"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:fontFamily="@font/inter_regular" />
 
-    <TextView
-        android:id="@+id/descrpition_plat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/descritpion"
-        android:textSize="17sp"
-        style="@style/TextStyleWhiteRegular"
-        app:layout_constraintTop_toBottomOf="@id/gluten_button"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="20dp" />
+                <TextView
+                    android:id="@+id/appartementUser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" | 1404"
+                    android:textSize="16sp"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginStart="4dp"
+                    android:fontFamily="@font/inter_regular" />
+            </LinearLayout>
 
-    <TextView
-        android:id="@+id/text_descrpition"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/descritpion_detail"
-        android:textSize="15sp"
-        style="@style/TextStyleWhiteRegular"
-        app:layout_constraintTop_toBottomOf="@id/descrpition_plat"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="20dp" />
+            <RatingBar
+                android:id="@+id/ratingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:rating="4"
+                android:stepSize="1"
+                android:isIndicator="true"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/portions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/portions"
-        android:textSize="17sp"
-        style="@style/TextStyleWhiteRegular"
-        app:layout_constraintTop_toBottomOf="@id/text_descrpition"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="20dp" />
 
-    <Spinner
-        android:id="@+id/nombre_portions"
-        android:layout_width="60dp"
-        android:layout_height="48dp"
-        android:spinnerMode="dropdown"
-        android:entries="@array/portions_array"
-        android:popupBackground="#FFFFFF"
-        android:background="#FFFFFF"
-        android:theme="@style/SpinnerBlackTextTheme"
-        app:layout_constraintTop_toBottomOf="@id/portions"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="20dp"/>
 
-    <TextView
-        android:id="@+id/mode_de_retrait"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/mode_de_retrait"
-        android:textSize="17sp"
-        style="@style/TextStyleWhiteRegular"
-        app:layout_constraintTop_toBottomOf="@id/nombre_portions"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="20dp" />
+        <!-- Allergènes -->
+        <TextView
+            android:id="@+id/allergenes_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/allergenes"
+            android:textSize="17sp"
+            style="@style/TextStyleWhiteRegular"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="20dp"
+            app:layout_constraintTop_toBottomOf="@id/cuisinierInfoBlock"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/pickup_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/pick_up"
-        style="@style/TextStyleBlackRegular"
-        android:textSize="17sp"
-        app:layout_constraintTop_toBottomOf="@id/mode_de_retrait"
-        app:layout_constraintStart_toStartOf="parent"
-        android:backgroundTint="@color/white"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="20dp"/>
+        <Button
+            android:id="@+id/gluten_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/gluten"
+            style="@style/TextStyleBlackRegular"
+            android:textSize="17sp"
+            android:backgroundTint="@color/white"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="20dp"
+            app:layout_constraintTop_toBottomOf="@id/allergenes_detail"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/home_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/home"
-        style="@style/TextStyleBlackRegular"
-        android:textSize="17sp"
-        app:layout_constraintTop_toBottomOf="@id/mode_de_retrait"
-        app:layout_constraintStart_toEndOf="@id/pickup_button"
-        android:backgroundTint="@color/white"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="10dp"/>
+        <Button
+            android:id="@+id/lactose_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lait"
+            style="@style/TextStyleBlackRegular"
+            android:textSize="17sp"
+            android:backgroundTint="@color/white"
+            android:layout_marginStart="10dp"
+            app:layout_constraintTop_toTopOf="@id/gluten_button"
+            app:layout_constraintStart_toEndOf="@id/gluten_button" />
 
-    <TextView
-        android:id="@+id/horaire_de_retrait"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/horaire_de_retrait"
-        android:textSize="17sp"
-        style="@style/TextStyleWhiteRegular"
-        app:layout_constraintTop_toBottomOf="@id/pickup_button"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="20dp" />
+        <!-- Description -->
+        <TextView
+            android:id="@+id/descrpition_plat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/descritpion"
+            android:textSize="17sp"
+            style="@style/TextStyleWhiteRegular"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="20dp"
+            app:layout_constraintTop_toBottomOf="@id/gluten_button"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/horaires"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/horaires_chiffres"
-        style="@style/TextStyleBlackRegular"
-        android:textSize="17sp"
-        app:layout_constraintTop_toBottomOf="@id/horaire_de_retrait"
-        app:layout_constraintStart_toStartOf="parent"
-        android:backgroundTint="@color/white"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="20dp"/>
+        <TextView
+            android:id="@+id/text_descrpition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/descritpion_detail"
+            android:textSize="15sp"
+            style="@style/TextStyleWhiteRegular"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="20dp"
+            app:layout_constraintTop_toBottomOf="@id/descrpition_plat"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/nom_profil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/henry"
-        android:textSize="17sp"
-        style="@style/TextStyleWhiteRegular"
-        app:layout_constraintTop_toBottomOf="@id/horaires"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="20dp" />
+        <!-- Portion -->
+        <TextView
+            android:id="@+id/portions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/portions"
+            android:textSize="17sp"
+            style="@style/TextStyleWhiteRegular"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="20dp"
+            app:layout_constraintTop_toBottomOf="@id/text_descrpition"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
-        android:id="@+id/etoiles_henry"
-        android:layout_width="200dp"
-        android:layout_height="20dp"
-        android:src="@drawable/quatre_etoiles"
-        android:contentDescription="@string/quatre_etoiles"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/horaires"
-        app:layout_constraintStart_toEndOf="@id/nom_profil"
-        tools:ignore="MissingConstraints"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="90dp"/>
+        <TextView
+            android:id="@+id/nombre_portions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2 portions"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:fontFamily="@font/inter_regular"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="20dp"
+            app:layout_constraintTop_toBottomOf="@id/portions"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/contact_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/contact"
-        style="@style/TextStyleWhiteBold"
-        android:textSize="17sp"
-        app:layout_constraintTop_toBottomOf="@id/nom_profil"
-        app:layout_constraintStart_toStartOf="parent"
-        android:backgroundTint="@color/black"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="90dp"/>
+        <!-- Mode de retrait -->
+        <TextView
+            android:id="@+id/mode_de_retrait"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mode_de_retrait"
+            android:textSize="17sp"
+            style="@style/TextStyleWhiteRegular"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="20dp"
+            app:layout_constraintTop_toBottomOf="@id/nombre_portions"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/pay_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/pay"
-        style="@style/TextStyleWhiteBold"
-        android:textSize="17sp"
-        app:layout_constraintTop_toBottomOf="@id/nom_profil"
-        app:layout_constraintStart_toEndOf="@id/contact_button"
-        android:backgroundTint="@color/black"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="10dp"/>
+        <Button
+            android:id="@+id/pickup_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pick_up"
+            style="@style/TextStyleBlackRegular"
+            android:textSize="17sp"
+            android:backgroundTint="@color/white"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="20dp"
+            app:layout_constraintTop_toBottomOf="@id/mode_de_retrait"
+            app:layout_constraintStart_toStartOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/home_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/home"
+            style="@style/TextStyleBlackRegular"
+            android:textSize="17sp"
+            android:backgroundTint="@color/white"
+            android:layout_marginStart="10dp"
+            app:layout_constraintTop_toTopOf="@id/pickup_button"
+            app:layout_constraintStart_toEndOf="@id/pickup_button" />
+
+        <!-- Horaire -->
+        <TextView
+            android:id="@+id/horaire_de_retrait"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/horaire_de_retrait"
+            android:textSize="17sp"
+            style="@style/TextStyleWhiteRegular"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="20dp"
+            app:layout_constraintTop_toBottomOf="@id/pickup_button"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/horaires"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/horaires_chiffres"
+            style="@style/TextStyleBlackRegular"
+            android:textSize="17sp"
+            android:backgroundTint="@color/white"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="20dp"
+            app:layout_constraintTop_toBottomOf="@id/horaire_de_retrait"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <!-- Ligne de séparation -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="#FFFFFF"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/horaires"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Boutons finaux -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/buttonRow"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintTop_toBottomOf="@id/horaires"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/contactButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Contacter"
+                android:textColor="#FFFFFF"
+                android:background="@android:color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/payerButton"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.48" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/payerButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Payer"
+                android:textColor="#FFFFFF"
+                android:background="@android:color/black"
+                app:layout_constraintStart_toEndOf="@id/contactButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.48" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

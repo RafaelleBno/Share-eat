@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -17,7 +18,6 @@
             android:orientation="vertical"
             android:gravity="center_horizontal">
 
-            <!-- Image -->
             <ImageView
                 android:id="@+id/platImageView"
                 android:layout_width="match_parent"
@@ -27,7 +27,6 @@
                 android:contentDescription="Image du plat"
                 android:layout_marginBottom="16dp" />
 
-            <!-- Nom + prix -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -56,9 +55,9 @@
                     android:textSize="20sp"
                     android:fontFamily="@font/inter_bold"
                     android:layout_marginStart="12dp" />
+
             </LinearLayout>
 
-            <!-- Allergènes -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -68,77 +67,127 @@
                 android:fontFamily="@font/inter_regular"
                 android:layout_marginBottom="8dp" />
 
-            <LinearLayout
+
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/allergenGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="4"
                 android:layout_marginBottom="12dp">
 
-                <Button
+                <!-- Exemple : même padding + hauteur sur chaque bouton -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnGluten"
+                    style="?attr/materialButtonOutlinedStyle"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Gluten"
-                    android:textColor="#000"
-                    android:background="@android:color/transparent"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/inter_regular"/>
+                    android:checkable="true"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:minHeight="48dp"/>
 
-                <Button
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnArachide"
+                    style="?attr/materialButtonOutlinedStyle"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Arachide"
-                    android:textColor="#000"
-                    android:background="@android:color/transparent"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/inter_regular"/>
+                    android:checkable="true"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:minHeight="48dp"/>
 
-                <Button
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnOeuf"
+                    style="?attr/materialButtonOutlinedStyle"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Œuf"
-                    android:textColor="#000"
-                    android:background="@android:color/transparent"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/inter_regular"/>
+                    android:checkable="true"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:minHeight="48dp"/>
 
-                <Button
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnLait"
+                    style="?attr/materialButtonOutlinedStyle"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Lait"
-                    android:textColor="#000"
-                    android:background="@android:color/transparent"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/inter_regular"/>
-            </LinearLayout>
+                    android:checkable="true"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:minHeight="48dp"/>
+            </com.google.android.material.button.MaterialButtonToggleGroup>
 
-
-            <!-- Régimes -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Régimes alimentaire :"
+                android:text="Régimes alimentaires :"
                 android:textColor="#000"
                 android:textSize="16sp"
                 android:fontFamily="@font/inter_regular"
                 android:layout_marginBottom="4dp" />
 
-            <EditText
-                android:id="@+id/regimeEditText"
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/regimeGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="+ Kasher"
-                android:background="@android:drawable/edit_text"
-                android:padding="10dp"
-                android:fontFamily="@font/inter_regular"
-                android:textColor="#000"
-                android:layout_marginBottom="12dp" />
+                android:layout_marginBottom="12dp">
 
-            <!-- Description -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnVegan"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Vegan"
+                    android:checkable="true"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:minHeight="48dp"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnVegetarien"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Végétarien"
+                    android:checkable="true"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:minHeight="48dp"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnHalal"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Halal"
+                    android:checkable="true"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:minHeight="48dp"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnKasher"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Kasher"
+                    android:checkable="true"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:minHeight="48dp"/>
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -151,16 +200,18 @@
                 android:id="@+id/descriptionPlat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minLines="2"
-                android:hint="Description du plat..."
-                android:gravity="top"
+                android:minLines="4"
+                android:maxLines="10"
+                android:gravity="top|start"
+                android:inputType="textMultiLine"
+                android:scrollbars="vertical"
+                android:overScrollMode="ifContentScrolls"
                 android:background="@android:drawable/edit_text"
                 android:padding="10dp"
                 android:fontFamily="@font/inter_light"
                 android:textColor="#000"
                 android:layout_marginBottom="16dp" />
 
-            <!-- Portions -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -172,17 +223,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <EditText
+                    android:id="@+id/poidsEditText"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
-                    android:text=" x 300g"
-                    android:textSize="16sp"
+                    android:hint="g"
+                    android:inputType="number"
+                    android:paddingStart="8dp"
+                    android:background="@android:drawable/edit_text"
                     android:textColor="#000"
-                    android:layout_marginStart="8dp"
-                    android:fontFamily="@font/inter_regular"/>
+                    android:fontFamily="@font/inter_regular" />
             </LinearLayout>
 
-            <!-- Mode de retrait -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -192,36 +244,37 @@
                 android:fontFamily="@font/inter_regular"
                 android:layout_marginBottom="4dp" />
 
-            <LinearLayout
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/retraitGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="2"
                 android:layout_marginBottom="12dp">
 
-                <Button
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnPickup"
+                    style="?attr/materialButtonOutlinedStyle"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="PickUp"
-                    android:textColor="#000"
-                    android:background="@android:color/transparent"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/inter_regular" />
+                    android:text="Pick-up"
+                    android:checkable="true"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:minHeight="48dp"/>
 
-                <Button
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnHome"
+                    style="?attr/materialButtonOutlinedStyle"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Home"
-                    android:textColor="#000"
-                    android:background="@android:color/transparent"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/inter_regular" />
-            </LinearLayout>
+                    android:checkable="true"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:minHeight="48dp"/>
+            </com.google.android.material.button.MaterialButtonToggleGroup>
 
-
-            <!-- Horaire -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -235,14 +288,13 @@
                 android:id="@+id/horaireRetrait"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="19:00 - 19h15"
+                android:hint="19:00 – 19h15"
                 android:background="@android:drawable/edit_text"
                 android:padding="10dp"
                 android:fontFamily="@font/inter_regular"
                 android:textColor="#000"
                 android:layout_marginBottom="24dp" />
 
-            <!-- ADD -->
             <Button
                 android:id="@+id/addDishButton"
                 android:layout_width="match_parent"
@@ -260,4 +312,3 @@
         </LinearLayout>
     </ScrollView>
 </FrameLayout>
-

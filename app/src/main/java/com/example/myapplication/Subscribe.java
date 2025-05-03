@@ -12,10 +12,14 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
 
 public class Subscribe extends AppCompatActivity {
 
     private EditText emailInput, phoneInput, passwordInput;
+    private EditText firstNameInput, lastNameInput, apartmentInput;
     private Button nextButton;
     private FirebaseAuth auth;
     private boolean passwordVisible = false;
@@ -26,12 +30,15 @@ public class Subscribe extends AppCompatActivity {
         setContentView(R.layout.activity_subscribe);
 
         /* ---------- initialisation ---------- */
-        auth          = FirebaseAuth.getInstance();
-        emailInput    = findViewById(R.id.emailInput);
-        phoneInput    = findViewById(R.id.phoneInput);
-        passwordInput = findViewById(R.id.passwordInput);
+        auth            = FirebaseAuth.getInstance();
+        emailInput      = findViewById(R.id.emailInput);
+        phoneInput      = findViewById(R.id.phoneInput);
+        passwordInput   = findViewById(R.id.passwordInput);
+        firstNameInput  = findViewById(R.id.firstNameInput);
+        lastNameInput   = findViewById(R.id.lastNameInput);
+        apartmentInput  = findViewById(R.id.apartmentInput);
         ImageView eyeIcon = findViewById(R.id.eyeIcon);
-        nextButton    = findViewById(R.id.nextButton);
+        nextButton      = findViewById(R.id.nextButton);
 
         /* ---------- lien "Go to Login" ---------- */
         TextView goToLogin = findViewById(R.id.goToLogin);
@@ -52,10 +59,13 @@ public class Subscribe extends AppCompatActivity {
 
         /* ---------- bouton "Next / Sign up" ---------- */
         nextButton.setOnClickListener(v -> {
-            String email    = emailInput.getText().toString().trim();
-            String password = passwordInput.getText().toString().trim();
+            String email     = emailInput.getText().toString().trim();
+            String password  = passwordInput.getText().toString().trim();
+            String firstName = firstNameInput.getText().toString().trim();
+            String lastName  = lastNameInput.getText().toString().trim();
+            String apartment = apartmentInput.getText().toString().trim();
 
-            if (email.isEmpty() || password.isEmpty()) {
+            if (email.isEmpty() || password.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || apartment.isEmpty()) {
                 Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -65,11 +75,21 @@ public class Subscribe extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Toast.makeText(this, "Account created successfully!", Toast.LENGTH_SHORT).show();
 
+                            // ▶ enregistrement des infos dans Firestore
+                            String uid = auth.getCurrentUser().getUid();
+                            FirebaseFirestore.getInstance().collection("users")
+                                    .document(uid)
+                                    .set(new HashMap<String, Object>() {{
+                                        put("firstName", firstName);
+                                        put("lastName", lastName);
+                                        put("apartment", apartment);
+                                        put("email", email);
+                                    }});
+
                             // ▶ redirection vers MainActivity + onglet Home
                             Intent intent = new Intent(this, MainActivity.class);
                             intent.putExtra("nav_item", R.id.menu_home);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                                    | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
 
                         } else {

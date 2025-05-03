@@ -1,228 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/green"
-    tools:context=".ValidationDeCommande">
+    android:background="#96954F"
+    android:padding="24dp">
 
-    <ImageView
-        android:id="@+id/logo_croix"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/croix_blanche"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
-        android:contentDescription="@string/fermer_page"
-        android:clickable="true"
-        android:focusable="true"
-        tools:ignore="MissingConstraints" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/help_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/edit"
-        style="@style/TextStyleBlackRegular"
-        android:textSize="17sp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:backgroundTint="@color/white"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"/>
+        <!-- Titre -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Your order"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="16dp" />
 
-    <TextView
-        android:id="@+id/your_order"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/your_order"
-        android:textSize="22sp"
-        style="@style/TextStyleWhiteBold"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/logo_croix"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="40dp"/>
+        <!-- Image + Nom/€ -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
 
-    <ImageView
-        android:id="@+id/photo_plat"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/pates_bolognaise"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/logo_croix"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="30dp"
-        tools:ignore="MissingConstraints" />
+            <ImageView
+                android:id="@+id/imagePlatMini"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher_background"
+                android:layout_marginEnd="12dp" />
 
-    <TextView
-        android:id="@+id/nom_plat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/pates_bolognaises"
-        android:textSize="17sp"
-        style="@style/TextStyleWhiteRegular"
-        app:layout_constraintTop_toBottomOf="@id/your_order"
-        app:layout_constraintStart_toEndOf="@id/photo_plat"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="30dp"/>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
 
-    <TextView
-        android:id="@+id/prix_plat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/trois_euros"
-        android:textSize="17sp"
-        style="@style/TextStyleWhiteRegular"
-        app:layout_constraintTop_toBottomOf="@id/nom_plat"
-        app:layout_constraintStart_toEndOf="@id/photo_plat"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="30dp"/>
+                <TextView
+                    android:id="@+id/nomPlatMini"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nom du plat"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/nombre_portions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/une_portion"
-        android:textSize="17sp"
-        style="@style/TextStyleWhiteRegular"
-        app:layout_constraintTop_toBottomOf="@id/help_button"
-        app:layout_constraintStart_toEndOf="@id/nom_plat"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="70dp"/>
+                <TextView
+                    android:id="@+id/prixPlatMini"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3 €"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp" />
 
-    <ImageView
-        android:id="@+id/localisation_picto"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/localisation_blanc"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/photo_plat"
-        android:layout_marginTop="40dp"
-        android:layout_marginStart="30dp"
-        tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/nom_vendeur"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/henry"
-        android:textSize="17sp"
-        style="@style/TextStyleWhiteRegular"
-        app:layout_constraintTop_toBottomOf="@id/prix_plat"
-        app:layout_constraintStart_toEndOf="@id/localisation_picto"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="10dp"/>
+            </LinearLayout>
+        </LinearLayout>
 
-    <TextView
-        android:id="@+id/numero_appartement"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/num_appartement"
-        android:textSize="15sp"
-        style="@style/TextStyleWhiteRegular"
-        app:layout_constraintTop_toBottomOf="@id/nom_vendeur"
-        app:layout_constraintStart_toEndOf="@id/localisation_picto"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="10dp"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="20dp">
 
-    <ImageView
-        android:id="@+id/photo_residence"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/therese_papillon_photo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/localisation_picto"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="30dp"
-        tools:ignore="MissingConstraints" />
+            <TextView
+                android:id="@+id/portions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/portions"
+                android:textSize="17sp"
+                style="@style/TextStyleWhiteRegular" />
 
-    <TextView
-        android:id="@+id/nom_residence"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/therese_papillon"
-        android:textSize="17sp"
-        style="@style/TextStyleWhiteRegular"
-        app:layout_constraintTop_toBottomOf="@id/numero_appartement"
-        app:layout_constraintStart_toEndOf="@id/temps_picto"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="10dp"/>
+            <TextView
+                android:id="@+id/nombre_portions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="x1"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:fontFamily="@font/inter_regular"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
 
-    <TextView
-        android:id="@+id/numero_etage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/deuxieme_etage"
-        android:textSize="17sp"
-        style="@style/TextStyleWhiteRegular"
-        app:layout_constraintTop_toBottomOf="@id/numero_appartement"
-        app:layout_constraintStart_toEndOf="@id/nom_residence"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="10dp"/>
 
-    <ImageView
-        android:id="@+id/temps_picto"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/temps_blanc"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/photo_residence"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="30dp"
-        tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/horaire_de_retrait"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/horaires_chiffres"
-        android:textSize="17sp"
-        style="@style/TextStyleWhiteRegular"
-        app:layout_constraintTop_toBottomOf="@id/nom_residence"
-        app:layout_constraintStart_toEndOf="@id/temps_picto"
-        android:layout_marginTop="40dp"
-        android:layout_marginStart="10dp"/>
+        <!-- Ligne -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#FFFFFF"
+            android:layout_marginVertical="12dp" />
 
-    <TextView
-        android:id="@+id/separation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="|"
-        android:textSize="17sp"
-        style="@style/TextStyleWhiteRegular"
-        app:layout_constraintTop_toBottomOf="@id/nom_residence"
-        app:layout_constraintStart_toEndOf="@id/horaire_de_retrait"
-        android:layout_marginTop="40dp"
-        android:layout_marginStart="10dp"
-        tools:ignore="HardcodedText" />
+        <!-- Localisation + nom -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
 
-    <TextView
-        android:id="@+id/mode_pickup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/pick_up"
-        android:textSize="17sp"
-        style="@style/TextStyleWhiteRegular"
-        app:layout_constraintTop_toBottomOf="@id/nom_residence"
-        app:layout_constraintStart_toEndOf="@id/separation"
-        android:layout_marginTop="40dp"
-        android:layout_marginStart="10dp"/>
+            <ImageView
+                android:id="@+id/locationIcon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_location"
+                android:layout_marginEnd="8dp" />
 
-    <Button
-        android:id="@+id/go_checkout_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/go_to_checkout"
-        style="@style/TextStyleWhiteBold"
-        android:textSize="17sp"
-        app:layout_constraintTop_toBottomOf="@id/mode_pickup"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:backgroundTint="@color/black"
-        android:layout_marginTop="300dp"/>
+            <TextView
+                android:id="@+id/nomUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Utilisateur"
+                android:textSize="16sp"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/appartementUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" | 1404"
+                android:textSize="16sp"
+                android:textColor="#FFFFFF"
+                android:layout_marginStart="4dp" />
+        </LinearLayout>
+
+        <!-- Rating -->
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:rating="4"
+            android:stepSize="1"
+            android:isIndicator="true"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Horaire -->
+        <TextView
+            android:id="@+id/horaires"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="21h30 - 23h"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="4dp" />
+
+        <!-- Retrait -->
+        <TextView
+            android:id="@+id/retraitText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PickUp"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Bouton checkout -->
+        <Button
+            android:id="@+id/checkoutButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Go to Checkout"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:background="#000000"
+            android:padding="12dp" />
+    </LinearLayout>
+</ScrollView>
+
+
