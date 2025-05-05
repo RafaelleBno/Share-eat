@@ -23,6 +23,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
+        <ImageView
+            android:id="@+id/fleche_retour"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/fleche_retour"
+            android:contentDescription="@string/pates_bolognaises"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:clickable="true"
+            android:focusable="true"
+            tools:ignore="MissingConstraints" />
+
         <!-- Titre & Prix -->
         <TextView
             android:id="@+id/title_pates_bolognaise"

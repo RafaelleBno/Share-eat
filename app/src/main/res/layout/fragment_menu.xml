@@ -155,8 +155,8 @@
         android:layout_height="wrap_content"
         android:text="Rafraîchir"
         android:layout_marginTop="8dp"
-        android:background="#000000"
-        android:textColor="#FFFFFF"
+        android:background="@color/black"
+        android:textColor="@color/white"
         app:layout_constraintTop_toBottomOf="@id/filterButtons"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
