@@ -8,8 +8,11 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -70,7 +73,7 @@ public class MenuFragment extends Fragment {
         vegetarianButton = view.findViewById(R.id.vegetarianButton);
         halalButton      = view.findViewById(R.id.halalButton);
         kasherButton     = view.findViewById(R.id.karcherButton);
-        refreshButton    = view.findViewById(R.id.refreshButton);
+
 
         searchBar.addTextChangedListener(new TextWatcher() {
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -88,15 +91,33 @@ public class MenuFragment extends Fragment {
         halalButton.setOnClickListener(v -> toggleRegimeFilter("Halal"));
         kasherButton.setOnClickListener(v -> toggleRegimeFilter("Kasher"));
 
+        ImageView refreshButton = view.findViewById(R.id.refreshImage);
+
         refreshButton.setOnClickListener(v -> {
             refreshButton.setEnabled(false);
-            refreshButton.setText("Chargement...");
+
+            // Changer l’image si besoin
+            refreshButton.setImageResource(R.drawable.ic_loading);
+
+            // Lancer l’animation de rotation
+            Animation rotation = AnimationUtils.loadAnimation(getContext(), R.anim.rotation);
+            refreshButton.startAnimation(rotation);
+
             startListeningToPlats();
+
             new Handler(Looper.getMainLooper()).postDelayed(() -> {
                 refreshButton.setEnabled(true);
-                refreshButton.setText("Rafraîchir");
+
+                // Stop l’animation
+                refreshButton.clearAnimation();
+
+                // Remet l’image normale
+                refreshButton.setImageResource(R.drawable.ic_loading);
             }, 1500);
         });
+
+
+
 
         startListeningToPlats();
     }
