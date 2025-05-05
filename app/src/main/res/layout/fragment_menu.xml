@@ -155,12 +155,9 @@
         android:src="@drawable/ic_loading"
         android:contentDescription="Rafraîchir"
         android:layout_marginTop="8dp"
-<<<<<<< HEAD
         android:background="@color/black"
         android:textColor="@color/white"
-=======
         android:padding="4dp"
->>>>>>> 8a12df3fe8e9c43a47ef4a889d112c54c1ed0794
         app:layout_constraintTop_toBottomOf="@id/filterButtons"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
