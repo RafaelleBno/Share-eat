@@ -57,6 +57,7 @@ public class AjouterPlatFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Initialisation des vues
         platImageView = view.findViewById(R.id.platImageView);
         nomPlat = view.findViewById(R.id.nomPlat);
         prixPlat = view.findViewById(R.id.prixPlat);
@@ -88,7 +89,7 @@ public class AjouterPlatFragment extends Fragment {
             addDishButton.setEnabled(false);
             if (imageUri != null) uploadImage();
             else {
-                Toast.makeText(getContext(), "Choisis une image", Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireContext(), "Choisis une image", Toast.LENGTH_SHORT).show();
                 addDishButton.setEnabled(true);
             }
         });
@@ -136,7 +137,7 @@ public class AjouterPlatFragment extends Fragment {
         firestore.collection("users").document(userId).get()
                 .addOnSuccessListener(snapshot -> {
                     if (!snapshot.exists()) {
-                        Toast.makeText(getContext(), "Profil utilisateur introuvable", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(requireContext(), "Profil utilisateur introuvable", Toast.LENGTH_SHORT).show();
                         addDishButton.setEnabled(true);
                         return;
                     }
@@ -161,7 +162,7 @@ public class AjouterPlatFragment extends Fragment {
         List<String> allergenes = getAllergenesChecked();
 
         if (nom.isEmpty() || prix.isEmpty()) {
-            Toast.makeText(getContext(), "Remplis nom + prix", Toast.LENGTH_SHORT).show();
+            Toast.makeText(requireContext(), "Remplis nom + prix", Toast.LENGTH_SHORT).show();
             addDishButton.setEnabled(true);
             return;
         }
@@ -175,7 +176,7 @@ public class AjouterPlatFragment extends Fragment {
         firestore.collection("plats")
                 .add(plat)
                 .addOnSuccessListener(d -> {
-                    Toast.makeText(getContext(), "Plat ajouté", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), "Plat ajouté", Toast.LENGTH_SHORT).show();
                     clear();
                     addDishButton.setEnabled(true);
                 })
@@ -200,7 +201,7 @@ public class AjouterPlatFragment extends Fragment {
 
     private void err(String step, Exception e) {
         Log.e("AjouterPlat", step + "❌", e);
-        Toast.makeText(getContext(), step + " : " + e.getMessage(), Toast.LENGTH_LONG).show();
+        Toast.makeText(requireContext(), step + " : " + e.getMessage(), Toast.LENGTH_LONG).show();
     }
 }
 

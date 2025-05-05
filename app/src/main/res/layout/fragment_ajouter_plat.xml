@@ -62,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Allergènes :"
-                android:textColor="#000"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 android:fontFamily="@font/inter_regular"
                 android:layout_marginBottom="8dp" />
@@ -82,6 +82,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Gluten"
+                    android:textColor="@color/white"
                     android:checkable="true"
                     android:paddingStart="8dp"
                     android:paddingEnd="8dp"
@@ -94,6 +95,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Arachide"
+                    android:textColor="@color/white"
                     android:checkable="true"
                     android:paddingStart="8dp"
                     android:paddingEnd="8dp"
@@ -106,6 +108,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Œuf"
+                    android:textColor="@color/white"
                     android:checkable="true"
                     android:paddingStart="8dp"
                     android:paddingEnd="8dp"
@@ -118,6 +121,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Lait"
+                    android:textColor="@color/white"
                     android:checkable="true"
                     android:paddingStart="8dp"
                     android:paddingEnd="8dp"
@@ -128,7 +132,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Régimes alimentaires :"
-                android:textColor="#000"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 android:fontFamily="@font/inter_regular"
                 android:layout_marginBottom="4dp" />
@@ -144,6 +148,7 @@
                     style="?attr/materialButtonOutlinedStyle"
                     android:layout_width="0dp"
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:layout_height="wrap_content"
                     android:text="Vegan"
                     android:checkable="true"
@@ -160,6 +165,7 @@
                     android:text="Végétarien"
                     android:checkable="true"
                     android:paddingStart="8dp"
+                    android:textColor="@color/white"
                     android:paddingEnd="8dp"
                     android:minHeight="48dp"/>
 
@@ -170,6 +176,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Halal"
+                    android:textColor="@color/white"
                     android:checkable="true"
                     android:paddingStart="8dp"
                     android:paddingEnd="8dp"
@@ -182,6 +189,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Kasher"
+                    android:textColor="@color/white"
                     android:checkable="true"
                     android:paddingStart="8dp"
                     android:paddingEnd="8dp"
@@ -192,7 +200,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Description :"
-                android:textColor="#000"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 android:fontFamily="@font/inter_regular" />
 
@@ -209,7 +217,7 @@
                 android:background="@android:drawable/edit_text"
                 android:padding="10dp"
                 android:fontFamily="@font/inter_light"
-                android:textColor="#000"
+                android:textColor="@color/white"
                 android:layout_marginBottom="16dp" />
 
             <LinearLayout
@@ -239,7 +247,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Mode de retrait :"
-                android:textColor="#000"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 android:fontFamily="@font/inter_regular"
                 android:layout_marginBottom="4dp" />
@@ -257,6 +265,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Pick-up"
+                    android:textColor="@color/white"
                     android:checkable="true"
                     android:paddingStart="8dp"
                     android:paddingEnd="8dp"
@@ -269,6 +278,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Home"
+                    android:textColor="@color/white"
                     android:checkable="true"
                     android:paddingStart="8dp"
                     android:paddingEnd="8dp"
@@ -289,10 +299,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="19:00 – 19h15"
+                android:textColor="@color/white"
                 android:background="@android:drawable/edit_text"
                 android:padding="10dp"
                 android:fontFamily="@font/inter_regular"
-                android:textColor="#000"
                 android:layout_marginBottom="24dp" />
 
             <Button
