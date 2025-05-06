@@ -51,4 +51,22 @@
     <string name="deuxieme_etage">2ème</string>
     <string name="fermer_page">Fermer la page</string>
 
+    <!-- Strings pour la page de messages -->
+    <string name="search_hint">Food, shopping, drinks, etc</string>
+    <string name="messages">MESSAGES</string>
+    <string name="user_ramin">Ramin Ka</string>
+    <string name="status_ramin">Active Yesterday</string>
+    <string name="time_1">12:19</string>
+    <string name="user_rabia">Rabia K</string>
+    <string name="status_rabia">1 min</string>
+    <string name="time_2">12:09</string>
+    <string name="user_john">John Watsan</string>
+    <string name="status_john">Seen</string>
+    <string name="time_3">11:09</string>
+    <string name="user_maria">Maria</string>
+    <string name="status_maria">Active Yesterday</string>
+    <string name="time_4">10:49</string>
+    <string name="avatar_desc">Avatar de utilisateur</string>
+
+
 </resources>
