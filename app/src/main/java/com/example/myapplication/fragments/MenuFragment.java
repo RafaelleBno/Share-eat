@@ -31,10 +31,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.Query;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class MenuFragment extends Fragment {
 
@@ -43,11 +40,11 @@ public class MenuFragment extends Fragment {
     private final List<Plat> platList = new ArrayList<>();
 
     private EditText searchBar;
-    private Button pickupButton, homeButton, refreshButton;
+    private Button pickupButton, homeButton;
     private TextView veganButton, vegetarianButton, halalButton, kasherButton;
 
     private String selectedRetrait = "";
-    private String selectedRegime = "";
+    private final Set<String> selectedRegimes = new HashSet<>();
     private ListenerRegistration platListener;
 
     @Nullable
@@ -65,7 +62,6 @@ public class MenuFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.dishRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
         adapter = new PlatAdapter(requireContext(), platList, this::openPlatDetail);
         recyclerView.setAdapter(adapter);
 
@@ -76,7 +72,6 @@ public class MenuFragment extends Fragment {
         vegetarianButton = view.findViewById(R.id.vegetarianButton);
         halalButton      = view.findViewById(R.id.halalButton);
         kasherButton     = view.findViewById(R.id.karcherButton);
-
 
         searchBar.addTextChangedListener(new TextWatcher() {
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -90,19 +85,14 @@ public class MenuFragment extends Fragment {
         homeButton.setOnClickListener(v -> toggleRetraitFilter("Home"));
 
         veganButton.setOnClickListener(v -> toggleRegimeFilter("Vegan"));
-        vegetarianButton.setOnClickListener(v -> toggleRegimeFilter("Végétarien"));
+        vegetarianButton.setOnClickListener(v -> toggleRegimeFilter("Vegetarien")); // orthographe Firestore
         halalButton.setOnClickListener(v -> toggleRegimeFilter("Halal"));
         kasherButton.setOnClickListener(v -> toggleRegimeFilter("Kasher"));
 
         ImageView refreshButton = view.findViewById(R.id.refreshImage);
-
         refreshButton.setOnClickListener(v -> {
             refreshButton.setEnabled(false);
-
-            // Changer l’image si besoin
             refreshButton.setImageResource(R.drawable.ic_loading);
-
-            // Lancer l’animation de rotation
             Animation rotation = AnimationUtils.loadAnimation(getContext(), R.anim.rotation);
             refreshButton.startAnimation(rotation);
 
@@ -110,36 +100,35 @@ public class MenuFragment extends Fragment {
 
             new Handler(Looper.getMainLooper()).postDelayed(() -> {
                 refreshButton.setEnabled(true);
-
-                // Stop l’animation
                 refreshButton.clearAnimation();
-
-                // Remet l’image normale
                 refreshButton.setImageResource(R.drawable.ic_loading);
             }, 1500);
         });
-
-
-
 
         startListeningToPlats();
     }
 
     private void toggleRetraitFilter(String value) {
         selectedRetrait = selectedRetrait.equals(value) ? "" : value;
-        startListeningToPlats();
         pickupButton.setSelected(selectedRetrait.equals("Pick-up"));
         homeButton.setSelected(selectedRetrait.equals("Home"));
+        startListeningToPlats();
     }
 
-    private void toggleRegimeFilter(String value) {
-        selectedRegime = selectedRegime.equals(value) ? "" : value;
-        startListeningToPlats();
+    private void toggleRegimeFilter(String regime) {
+        if (selectedRegimes.contains(regime)) {
+            selectedRegimes.remove(regime);
+        } else {
+            selectedRegimes.add(regime);
+        }
 
-        veganButton.setSelected(selectedRegime.equals("Vegan"));
-        vegetarianButton.setSelected(selectedRegime.equals("Végétarien"));
-        halalButton.setSelected(selectedRegime.equals("Halal"));
-        kasherButton.setSelected(selectedRegime.equals("Kasher"));
+        // Affichage visuel
+        veganButton.setSelected(selectedRegimes.contains("Vegan"));
+        vegetarianButton.setSelected(selectedRegimes.contains("Vegetarien"));
+        halalButton.setSelected(selectedRegimes.contains("Halal"));
+        kasherButton.setSelected(selectedRegimes.contains("Kasher"));
+
+        startListeningToPlats();
     }
 
     private void startListeningToPlats() {
@@ -149,9 +138,6 @@ public class MenuFragment extends Fragment {
 
         if (!selectedRetrait.isEmpty()) {
             query = query.whereEqualTo("retrait", selectedRetrait);
-        }
-        if (!selectedRegime.isEmpty()) {
-            query = query.whereEqualTo("regime", selectedRegime);
         }
 
         query = query.orderBy("timestamp", Query.Direction.DESCENDING);
@@ -177,8 +163,15 @@ public class MenuFragment extends Fragment {
                         for (DocumentSnapshot doc : snapshot.getDocuments()) {
                             Plat plat = doc.toObject(Plat.class);
                             if (plat != null) {
+                                // Filtrage local par régimes multiples
+                                if (!selectedRegimes.isEmpty()) {
+                                    if (plat.regimes == null || Collections.disjoint(plat.regimes, selectedRegimes)) {
+                                        continue; // ne contient pas au moins un des régimes cochés
+                                    }
+                                }
+
                                 plat.documentId = doc.getId();
-                                plat.isLiked = favorisIds.contains(plat.documentId); // ❤️
+                                plat.isLiked = favorisIds.contains(plat.documentId);
                                 platList.add(plat);
                             }
                         }
@@ -187,7 +180,6 @@ public class MenuFragment extends Fragment {
                     });
         });
     }
-
 
     private void filterBySearch(String queryText) {
         List<Plat> filtered = new ArrayList<>();
@@ -211,10 +203,7 @@ public class MenuFragment extends Fragment {
         args.putString("portion", plat.portion != null ? plat.portion : "");
         args.putString("allergenes", plat.allergenes != null ? String.join(", ", plat.allergenes) : "");
 
-        // ✅ Pour afficher nom + appart du cuisinier
         args.putString("userId", plat.userId);
-
-        // ✅ Pour supprimer le plat après achat
         args.putString("documentId", plat.documentId);
 
         PlatEnDetailFragment fragment = new PlatEnDetailFragment();
@@ -225,7 +214,7 @@ public class MenuFragment extends Fragment {
                 .replace(R.id.fragment_container, fragment)
                 .addToBackStack(null)
                 .commit();
-    } // 👈 cette accolade manquait chez toi !
+    }
 
     @Override
     public void onDestroyView() {
@@ -233,4 +222,3 @@ public class MenuFragment extends Fragment {
         if (platListener != null) platListener.remove();
     }
 }
-

@@ -14,7 +14,6 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
-import com.example.myapplication.models.Plat;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,7 +28,9 @@ public class AjouterPlatFragment extends Fragment {
     private EditText nomPlat, prixPlat, descriptionEditText, horaireEditText, poidsEditText;
     private Spinner portionSpinner;
     private Button addDishButton;
-    private MaterialButtonToggleGroup regimeGroup, retraitGroup, allergenGroup;
+    private MaterialButtonToggleGroup allergenGroup;
+
+    private MaterialButton btnPickup, btnHome, btnKasher, btnHalal, btnVegetarien, btnVegan;
 
     private Uri imageUri;
     private FirebaseFirestore firestore;
@@ -55,9 +56,15 @@ public class AjouterPlatFragment extends Fragment {
         poidsEditText = view.findViewById(R.id.poidsEditText);
         portionSpinner = view.findViewById(R.id.portionSpinner);
         addDishButton = view.findViewById(R.id.addDishButton);
-        regimeGroup = view.findViewById(R.id.regimeGroup);
-        retraitGroup = view.findViewById(R.id.retraitGroup);
         allergenGroup = view.findViewById(R.id.allergenGroup);
+
+        // Initialisation des boutons de filtres
+        btnPickup = view.findViewById(R.id.btnPickup);
+        btnHome = view.findViewById(R.id.btnHome);
+        btnKasher = view.findViewById(R.id.btnKasher);
+        btnHalal = view.findViewById(R.id.btnHalal);
+        btnVegetarien = view.findViewById(R.id.btnVegetarien);
+        btnVegan = view.findViewById(R.id.btnVegan);
 
         firestore = FirebaseFirestore.getInstance();
         storageRef = FirebaseStorage.getInstance().getReference("plats");
@@ -91,12 +98,6 @@ public class AjouterPlatFragment extends Fragment {
         imagePickerLauncher.launch(pick);
     }
 
-    private String checkedText(MaterialButtonToggleGroup grp) {
-        int id = grp.getCheckedButtonId();
-        if (id == View.NO_ID) return "";
-        return ((MaterialButton) grp.findViewById(id)).getText().toString();
-    }
-
     private List<String> getAllergenesChecked() {
         List<String> allergenes = new ArrayList<>();
         for (int i = 0; i < allergenGroup.getChildCount(); i++) {
@@ -106,6 +107,17 @@ public class AjouterPlatFragment extends Fragment {
             }
         }
         return allergenes;
+    }
+
+    private List<String> getRegimesChecked() {
+        List<String> regimes = new ArrayList<>();
+        if (btnPickup.isChecked()) regimes.add("Pickup");
+        if (btnHome.isChecked()) regimes.add("Home");
+        if (btnVegan.isChecked()) regimes.add("Vegan");
+        if (btnVegetarien.isChecked()) regimes.add("Vegetarien");
+        if (btnHalal.isChecked()) regimes.add("Halal");
+        if (btnKasher.isChecked()) regimes.add("Kasher");
+        return regimes;
     }
 
     private void uploadImage() {
@@ -153,6 +165,7 @@ public class AjouterPlatFragment extends Fragment {
         String horaire = horaireEditText.getText().toString().trim();
         String portion = poidsEditText.getText().toString().trim() + "g";
         List<String> allergenes = getAllergenesChecked();
+        List<String> regimes = getRegimesChecked();
 
         if (nom.isEmpty() || prix.isEmpty()) {
             if (isAdded()) {
@@ -162,16 +175,13 @@ public class AjouterPlatFragment extends Fragment {
             return;
         }
 
-        String regime = checkedText(regimeGroup);
-        String retrait = checkedText(retraitGroup);
         String userId = auth.getCurrentUser().getUid();
 
         Map<String, Object> platMap = new HashMap<>();
         platMap.put("nom", nom);
         platMap.put("prix", prix);
         platMap.put("imageUrl", url);
-        platMap.put("regime", regime);
-        platMap.put("retrait", retrait);
+        platMap.put("regimes", regimes);  // Utilisation de la liste ici
         platMap.put("userId", userId);
         platMap.put("userPrenom", userPrenom);
         platMap.put("userAppartement", userAppartement);
@@ -208,9 +218,13 @@ public class AjouterPlatFragment extends Fragment {
         horaireEditText.setText("");
         poidsEditText.setText("");
         platImageView.setImageResource(R.drawable.ic_launcher_background);
-        regimeGroup.clearChecked();
-        retraitGroup.clearChecked();
         allergenGroup.clearChecked();
+        btnPickup.setChecked(false);
+        btnHome.setChecked(false);
+        btnKasher.setChecked(false);
+        btnHalal.setChecked(false);
+        btnVegetarien.setChecked(false);
+        btnVegan.setChecked(false);
         imageUri = null;
     }
 
@@ -221,5 +235,6 @@ public class AjouterPlatFragment extends Fragment {
         }
     }
 }
+
 
 
