@@ -23,6 +23,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
+        <!-- bouton flèche -->
         <ImageView
             android:id="@+id/fleche_retour"
             android:layout_width="50dp"

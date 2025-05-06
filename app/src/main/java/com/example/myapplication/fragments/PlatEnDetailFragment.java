@@ -66,7 +66,7 @@ public class PlatEnDetailFragment extends Fragment {
         Button payerButton = view.findViewById(R.id.payerButton);
 
 
-        // ⚠️ Ici on récupère bien les deux TextView
+        // On récupère les deux TextView
         TextView nomUser = view.findViewById(R.id.nomUser);
         TextView appartementUser = view.findViewById(R.id.appartementUser);
         RatingBar ratingBar = view.findViewById(R.id.ratingBar);
@@ -83,10 +83,9 @@ public class PlatEnDetailFragment extends Fragment {
 
         glutenBtn.setVisibility(allergenes.contains("Gluten") ? View.VISIBLE : View.GONE);
         lactoseBtn.setVisibility(
-                allergenes.contains("Lait") || allergenes.contains("Lactose") ? View.VISIBLE : View.GONE
-        );
+                allergenes.contains("Lait") || allergenes.contains("Lactose") ? View.VISIBLE : View.GONE);
 
-        // 🔥 On récupère les infos de l'utilisateur depuis Firestore
+        // On récupère les infos de l'utilisateur depuis Firestore
         if (!userId.isEmpty()) {
             FirebaseFirestore.getInstance()
                     .collection("users")
@@ -114,7 +113,7 @@ public class PlatEnDetailFragment extends Fragment {
             appartementUser.setText("");
         }
 
-        ratingBar.setRating(0); // par défaut, ou récupère une note si tu veux la stocker
+        ratingBar.setRating(0); // par défaut, ou récupère une note pour la stocker
         payerButton.setOnClickListener(v -> {
             Bundle bundle = new Bundle();
             bundle.putString("nom", nom);
@@ -135,5 +134,20 @@ public class PlatEnDetailFragment extends Fragment {
                     .commit();
         });
 
+        // flèche retour mène à la page précédente si non au menu.
+        ImageView flecheRetour = view.findViewById(R.id.fleche_retour);
+
+        flecheRetour.setOnClickListener(v -> {
+            if (requireActivity().getSupportFragmentManager().getBackStackEntryCount() > 0) {
+                requireActivity().getSupportFragmentManager().popBackStack();
+            } else {
+                Fragment menuFragment = new MenuFragment();
+                requireActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, menuFragment)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
     }
 }
