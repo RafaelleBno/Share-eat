@@ -25,8 +25,7 @@ import java.util.*;
 public class AjouterPlatFragment extends Fragment {
 
     private ImageView platImageView;
-    private EditText nomPlat, prixPlat, descriptionEditText, horaireEditText, poidsEditText;
-    private Spinner portionSpinner;
+    private EditText nomPlat, prixPlat, descriptionEditText, horaireEditText, nbPortionsEditText;
     private Button addDishButton;
     private MaterialButtonToggleGroup allergenGroup;
 
@@ -53,8 +52,7 @@ public class AjouterPlatFragment extends Fragment {
         prixPlat = view.findViewById(R.id.prixPlat);
         descriptionEditText = view.findViewById(R.id.descriptionPlat);
         horaireEditText = view.findViewById(R.id.horaireRetrait);
-        poidsEditText = view.findViewById(R.id.poidsEditText);
-        portionSpinner = view.findViewById(R.id.portionSpinner);
+        nbPortionsEditText = view.findViewById(R.id.nbPortionsEditText);
         addDishButton = view.findViewById(R.id.addDishButton);
         allergenGroup = view.findViewById(R.id.allergenGroup);
 
@@ -176,14 +174,14 @@ public class AjouterPlatFragment extends Fragment {
         String prix = prixPlat.getText().toString().trim();
         String description = descriptionEditText.getText().toString().trim();
         String horaire = horaireEditText.getText().toString().trim();
-        String portion = poidsEditText.getText().toString().trim() + "g";
+        String portion = nbPortionsEditText.getText().toString().trim();
         List<String> allergenes = getAllergenesChecked();
         List<String> regimes = getRegimesChecked();
         String retrait = getCheckedRetrait();
 
-        if (nom.isEmpty() || prix.isEmpty()) {
+        if (nom.isEmpty() || prix.isEmpty() || portion.isEmpty()) {
             if (isAdded()) {
-                Toast.makeText(requireContext(), "Remplis nom + prix", Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireContext(), "Remplis nom, prix et portions", Toast.LENGTH_SHORT).show();
             }
             addDishButton.setEnabled(true);
             return;
@@ -202,7 +200,7 @@ public class AjouterPlatFragment extends Fragment {
         platMap.put("userAppartement", userAppartement);
         platMap.put("description", description);
         platMap.put("horaire", horaire);
-        platMap.put("portion", portion);
+        platMap.put("portion", portion); // ← nombre de portions
         platMap.put("allergenes", allergenes);
         platMap.put("timestamp", FieldValue.serverTimestamp());
 
@@ -231,7 +229,7 @@ public class AjouterPlatFragment extends Fragment {
         prixPlat.setText("");
         descriptionEditText.setText("");
         horaireEditText.setText("");
-        poidsEditText.setText("");
+        nbPortionsEditText.setText("");
         platImageView.setImageResource(R.drawable.ic_launcher_background);
         allergenGroup.clearChecked();
         btnPickup.setChecked(false);
@@ -250,7 +248,3 @@ public class AjouterPlatFragment extends Fragment {
         }
     }
 }
-
-
-
-
