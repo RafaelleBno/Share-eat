@@ -51,6 +51,20 @@ public class ProfilFragment extends Fragment {
         adapter = new PlatAdapter(requireContext(), platList, plat -> {});
         rvPosts.setAdapter(adapter);
 
+        btnWallet.setOnClickListener(v ->
+                Toast.makeText(getContext(), "Wallet bientôt dispo", Toast.LENGTH_SHORT).show());
+
+        btnOrder.setOnClickListener(v ->
+                Toast.makeText(getContext(), "Commandes à venir", Toast.LENGTH_SHORT).show());
+
+        btnFavoris.setOnClickListener(v -> {
+            requireActivity().getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, new FavorisFragment())
+                    .addToBackStack(null)
+                    .commit();
+        });
+
         loadUserInfo();
         loadUserPlats();
     }
@@ -96,5 +110,23 @@ public class ProfilFragment extends Fragment {
                     adapter.updateData(platList);
                 });
     }
-}
 
+    private void loadUserFavoris() {
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        FirebaseFirestore.getInstance().collection("plats")
+                .whereArrayContains("likedBy", uid)
+                .orderBy("timestamp", Query.Direction.DESCENDING)
+                .addSnapshotListener((snapshot, error) -> {
+                    if (error != null || snapshot == null) return;
+                    platList.clear();
+                    for (DocumentSnapshot doc : snapshot.getDocuments()) {
+                        Plat plat = doc.toObject(Plat.class);
+                        if (plat != null) {
+                            plat.documentId = doc.getId();
+                            platList.add(plat);
+                        }
+                    }
+                    adapter.updateData(platList);
+                });
+    }
+}

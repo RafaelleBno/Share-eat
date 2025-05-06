@@ -25,13 +25,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.R;
 import com.example.myapplication.adapters.PlatAdapter;
 import com.example.myapplication.models.Plat;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class MenuFragment extends Fragment {
 
@@ -159,18 +162,32 @@ public class MenuFragment extends Fragment {
                 return;
             }
 
-            platList.clear();
-            for (DocumentSnapshot doc : snapshot.getDocuments()) {
-                Plat plat = doc.toObject(Plat.class);
-                if (plat != null) {
-                    plat.documentId = doc.getId();
-                    platList.add(plat);
-                }
-            }
+            String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            FirebaseFirestore.getInstance()
+                    .collection("users").document(userId)
+                    .collection("favoris")
+                    .get()
+                    .addOnSuccessListener(favorisSnapshot -> {
+                        Set<String> favorisIds = new HashSet<>();
+                        for (DocumentSnapshot favDoc : favorisSnapshot) {
+                            favorisIds.add(favDoc.getId());
+                        }
 
-            filterBySearch(searchBar.getText().toString());
+                        platList.clear();
+                        for (DocumentSnapshot doc : snapshot.getDocuments()) {
+                            Plat plat = doc.toObject(Plat.class);
+                            if (plat != null) {
+                                plat.documentId = doc.getId();
+                                plat.isLiked = favorisIds.contains(plat.documentId); // ❤️
+                                platList.add(plat);
+                            }
+                        }
+
+                        filterBySearch(searchBar.getText().toString());
+                    });
         });
     }
+
 
     private void filterBySearch(String queryText) {
         List<Plat> filtered = new ArrayList<>();
