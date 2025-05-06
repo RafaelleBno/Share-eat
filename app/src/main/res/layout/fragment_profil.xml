@@ -282,7 +282,6 @@
             android:translationY="2dp"/>
     </FrameLayout>
 
-    <!-- ←———————— 6. RECYCLERVIEW DES POSTS ————————→ -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/postsRecycler"
         android:layout_width="0dp"
