@@ -4,19 +4,12 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.Spinner;
-import android.widget.Toast;
+import android.view.*;
+import android.widget.*;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.annotation.*;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
@@ -25,13 +18,10 @@ import com.example.myapplication.models.Plat;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
+import com.google.firebase.firestore.*;
+import com.google.firebase.storage.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class AjouterPlatFragment extends Fragment {
 
@@ -57,7 +47,6 @@ public class AjouterPlatFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Initialisation des vues
         platImageView = view.findViewById(R.id.platImageView);
         nomPlat = view.findViewById(R.id.nomPlat);
         prixPlat = view.findViewById(R.id.prixPlat);
@@ -89,7 +78,9 @@ public class AjouterPlatFragment extends Fragment {
             addDishButton.setEnabled(false);
             if (imageUri != null) uploadImage();
             else {
-                Toast.makeText(requireContext(), "Choisis une image", Toast.LENGTH_SHORT).show();
+                if (isAdded()) {
+                    Toast.makeText(requireContext(), "Choisis une image", Toast.LENGTH_SHORT).show();
+                }
                 addDishButton.setEnabled(true);
             }
         });
@@ -123,7 +114,7 @@ public class AjouterPlatFragment extends Fragment {
                 .addOnSuccessListener(s -> ref.getDownloadUrl()
                         .addOnSuccessListener(uri -> fetchUserAndSavePlat(uri.toString()))
                         .addOnFailureListener(e -> {
-                            err("URL", e);
+                            err("Récupération URL", e);
                             addDishButton.setEnabled(true);
                         }))
                 .addOnFailureListener(e -> {
@@ -137,7 +128,9 @@ public class AjouterPlatFragment extends Fragment {
         firestore.collection("users").document(userId).get()
                 .addOnSuccessListener(snapshot -> {
                     if (!snapshot.exists()) {
-                        Toast.makeText(requireContext(), "Profil utilisateur introuvable", Toast.LENGTH_SHORT).show();
+                        if (isAdded()) {
+                            Toast.makeText(requireContext(), "Profil utilisateur introuvable", Toast.LENGTH_SHORT).show();
+                        }
                         addDishButton.setEnabled(true);
                         return;
                     }
@@ -162,7 +155,9 @@ public class AjouterPlatFragment extends Fragment {
         List<String> allergenes = getAllergenesChecked();
 
         if (nom.isEmpty() || prix.isEmpty()) {
-            Toast.makeText(requireContext(), "Remplis nom + prix", Toast.LENGTH_SHORT).show();
+            if (isAdded()) {
+                Toast.makeText(requireContext(), "Remplis nom + prix", Toast.LENGTH_SHORT).show();
+            }
             addDishButton.setEnabled(true);
             return;
         }
@@ -171,14 +166,34 @@ public class AjouterPlatFragment extends Fragment {
         String retrait = checkedText(retraitGroup);
         String userId = auth.getCurrentUser().getUid();
 
-        Plat plat = new Plat(nom, prix, url, regime, retrait, userId, userPrenom, userAppartement, description, horaire, portion, allergenes);
+        Map<String, Object> platMap = new HashMap<>();
+        platMap.put("nom", nom);
+        platMap.put("prix", prix);
+        platMap.put("imageUrl", url);
+        platMap.put("regime", regime);
+        platMap.put("retrait", retrait);
+        platMap.put("userId", userId);
+        platMap.put("userPrenom", userPrenom);
+        platMap.put("userAppartement", userAppartement);
+        platMap.put("description", description);
+        platMap.put("horaire", horaire);
+        platMap.put("portion", portion);
+        platMap.put("allergenes", allergenes);
+        platMap.put("timestamp", FieldValue.serverTimestamp());
 
         firestore.collection("plats")
-                .add(plat)
-                .addOnSuccessListener(d -> {
-                    Toast.makeText(requireContext(), "Plat ajouté", Toast.LENGTH_SHORT).show();
+                .add(platMap)
+                .addOnSuccessListener(documentReference -> {
+                    if (!isAdded() || getActivity() == null) return;
+
+                    Toast.makeText(getActivity(), "Plat ajouté avec succès !", Toast.LENGTH_SHORT).show();
                     clear();
                     addDishButton.setEnabled(true);
+
+                    getActivity().getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fragment_container, new MenuFragment())
+                            .commitAllowingStateLoss();
                 })
                 .addOnFailureListener(e -> {
                     err("Firestore", e);
@@ -201,7 +216,10 @@ public class AjouterPlatFragment extends Fragment {
 
     private void err(String step, Exception e) {
         Log.e("AjouterPlat", step + "❌", e);
-        Toast.makeText(requireContext(), step + " : " + e.getMessage(), Toast.LENGTH_LONG).show();
+        if (isAdded()) {
+            Toast.makeText(requireContext(), step + " : " + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
     }
 }
+
 
