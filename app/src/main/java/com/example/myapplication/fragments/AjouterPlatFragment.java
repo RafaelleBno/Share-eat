@@ -58,13 +58,20 @@ public class AjouterPlatFragment extends Fragment {
         addDishButton = view.findViewById(R.id.addDishButton);
         allergenGroup = view.findViewById(R.id.allergenGroup);
 
-        // Initialisation des boutons de filtres
         btnPickup = view.findViewById(R.id.btnPickup);
         btnHome = view.findViewById(R.id.btnHome);
         btnKasher = view.findViewById(R.id.btnKasher);
         btnHalal = view.findViewById(R.id.btnHalal);
         btnVegetarien = view.findViewById(R.id.btnVegetarien);
         btnVegan = view.findViewById(R.id.btnVegan);
+
+        // Assure-toi que les tags sont bien définis dans le XML aussi
+        btnPickup.setTag("Pickup");
+        btnHome.setTag("Home");
+        btnVegan.setTag("Vegan");
+        btnVegetarien.setTag("Vegetarien");
+        btnHalal.setTag("Halal");
+        btnKasher.setTag("Kasher");
 
         firestore = FirebaseFirestore.getInstance();
         storageRef = FirebaseStorage.getInstance().getReference("plats");
@@ -111,13 +118,19 @@ public class AjouterPlatFragment extends Fragment {
 
     private List<String> getRegimesChecked() {
         List<String> regimes = new ArrayList<>();
-        if (btnPickup.isChecked()) regimes.add("Pickup");
-        if (btnHome.isChecked()) regimes.add("Home");
-        if (btnVegan.isChecked()) regimes.add("Vegan");
-        if (btnVegetarien.isChecked()) regimes.add("Vegetarien");
-        if (btnHalal.isChecked()) regimes.add("Halal");
-        if (btnKasher.isChecked()) regimes.add("Kasher");
+        if (btnPickup.isChecked()) regimes.add(btnPickup.getTag().toString());
+        if (btnHome.isChecked()) regimes.add(btnHome.getTag().toString());
+        if (btnVegan.isChecked()) regimes.add(btnVegan.getTag().toString());
+        if (btnVegetarien.isChecked()) regimes.add(btnVegetarien.getTag().toString());
+        if (btnHalal.isChecked()) regimes.add(btnHalal.getTag().toString());
+        if (btnKasher.isChecked()) regimes.add(btnKasher.getTag().toString());
         return regimes;
+    }
+
+    private String getCheckedRetrait() {
+        if (btnPickup.isChecked()) return btnPickup.getTag().toString();
+        if (btnHome.isChecked()) return btnHome.getTag().toString();
+        return "";
     }
 
     private void uploadImage() {
@@ -166,6 +179,7 @@ public class AjouterPlatFragment extends Fragment {
         String portion = poidsEditText.getText().toString().trim() + "g";
         List<String> allergenes = getAllergenesChecked();
         List<String> regimes = getRegimesChecked();
+        String retrait = getCheckedRetrait();
 
         if (nom.isEmpty() || prix.isEmpty()) {
             if (isAdded()) {
@@ -181,7 +195,8 @@ public class AjouterPlatFragment extends Fragment {
         platMap.put("nom", nom);
         platMap.put("prix", prix);
         platMap.put("imageUrl", url);
-        platMap.put("regimes", regimes);  // Utilisation de la liste ici
+        platMap.put("regimes", regimes);
+        platMap.put("retrait", retrait);
         platMap.put("userId", userId);
         platMap.put("userPrenom", userPrenom);
         platMap.put("userAppartement", userAppartement);
@@ -235,6 +250,7 @@ public class AjouterPlatFragment extends Fragment {
         }
     }
 }
+
 
 
 
