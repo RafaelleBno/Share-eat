@@ -89,7 +89,7 @@ public class DetailCommandeFragment extends Fragment {
                     });
         }
 
-        // ➡️ Lancer l’activité de confirmation avec données
+        // Lancer l’activité de confirmation avec données
         checkoutButton.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), ValidationDeCommande.class);
             intent.putExtra("nom", nom);

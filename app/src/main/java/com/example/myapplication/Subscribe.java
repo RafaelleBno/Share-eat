@@ -64,8 +64,10 @@ public class Subscribe extends AppCompatActivity {
             String firstName = firstNameInput.getText().toString().trim();
             String lastName  = lastNameInput.getText().toString().trim();
             String apartment = apartmentInput.getText().toString().trim();
+            String phone     = phoneInput.getText().toString().trim();  // ← AJOUT ICI
 
-            if (email.isEmpty() || password.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || apartment.isEmpty()) {
+            if (email.isEmpty() || password.isEmpty() || firstName.isEmpty()
+                    || lastName.isEmpty() || apartment.isEmpty() || phone.isEmpty()) {
                 Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -84,6 +86,7 @@ public class Subscribe extends AppCompatActivity {
                                         put("lastName", lastName);
                                         put("apartment", apartment);
                                         put("email", email);
+                                        put("phone", phoneInput.getText().toString().trim());
                                     }});
 
                             // ▶ redirection vers MainActivity + onglet Home

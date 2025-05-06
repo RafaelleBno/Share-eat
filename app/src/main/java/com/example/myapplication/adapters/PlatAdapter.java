@@ -10,8 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
 import com.example.myapplication.models.Plat;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class PlatAdapter extends RecyclerView.Adapter<PlatAdapter.PlatViewHolder> {
@@ -48,12 +50,30 @@ public class PlatAdapter extends RecyclerView.Adapter<PlatAdapter.PlatViewHolder
         holder.appartementUser.setText(plat.userAppartement != null ? " | " + plat.userAppartement : "");
         Glide.with(context).load(plat.imageUrl).into(holder.imagePlat);
 
-        // Like
-        holder.likeButton.setImageResource(plat.isLiked ? R.drawable.ic_heart_filled : R.drawable.ic_heart_outline);
+        // 🔴 Met à jour l'icône du cœur
+        holder.likeButton.setImageResource(
+                plat.isLiked ? R.drawable.ic_heart_filled : R.drawable.ic_heart_outline
+        );
+
+        // ❤️ Gère le clic sur le cœur
         holder.likeButton.setOnClickListener(v -> {
             plat.isLiked = !plat.isLiked;
             notifyItemChanged(holder.getAdapterPosition());
-            Toast.makeText(context, plat.isLiked ? "Ajouté aux favoris" : "Retiré des favoris", Toast.LENGTH_SHORT).show();
+
+            String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            FirebaseFirestore favorisRef = FirebaseFirestore.getInstance();
+
+            if (plat.isLiked) {
+                favorisRef.collection("users").document(userId)
+                        .collection("favoris").document(plat.documentId)
+                        .set(new HashMap<>());
+                Toast.makeText(context, "Ajouté aux favoris", Toast.LENGTH_SHORT).show();
+            } else {
+                favorisRef.collection("users").document(userId)
+                        .collection("favoris").document(plat.documentId)
+                        .delete();
+                Toast.makeText(context, "Retiré des favoris", Toast.LENGTH_SHORT).show();
+            }
         });
 
         // Supprimer
@@ -72,9 +92,9 @@ public class PlatAdapter extends RecyclerView.Adapter<PlatAdapter.PlatViewHolder
                     );
         });
 
-        // Ouvrir les détails
         holder.itemView.setOnClickListener(v -> listener.onPlatClick(plat));
     }
+
 
     @Override
     public int getItemCount() {

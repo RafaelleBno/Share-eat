@@ -1,7 +1,6 @@
 package com.example.myapplication.models;
 
 import com.google.firebase.Timestamp;
-
 import java.util.List;
 
 public class Plat {
@@ -9,7 +8,7 @@ public class Plat {
     public String nom;
     public String prix;
     public String imageUrl;
-    public String regime;
+    public String regime; // (peut être supprimé si tu n'en as plus besoin)
     public String retrait;
     public String userId;
     public String userPrenom;
@@ -18,16 +17,20 @@ public class Plat {
     public String horaire;
     public String portion;
     public List<String> allergenes;
+
+    public List<String> regimes; // ✅ champ ajouté pour support des filtres multiples
+
     public Timestamp timestamp;
     public String documentId;
-
     public boolean isLiked = false;
 
     public Plat() {}
 
     public Plat(String nom, String prix, String imageUrl, String regime, String retrait, String userId,
                 String userPrenom, String userAppartement,
-                String description, String horaire, String portion, List<String> allergenes) {
+                String description, String horaire, String portion, List<String> allergenes,
+                List<String> regimes) {
+
         this.nom = nom;
         this.prix = prix;
         this.imageUrl = imageUrl;
@@ -40,7 +43,8 @@ public class Plat {
         this.horaire = horaire;
         this.portion = portion;
         this.allergenes = allergenes;
+        this.regimes = regimes;
         this.timestamp = Timestamp.now();
-
     }
 }
+
