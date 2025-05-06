@@ -2,14 +2,8 @@ package com.example.myapplication.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.RatingBar;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.view.*;
+import android.widget.*;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -44,14 +38,13 @@ public class DetailCommandeFragment extends Fragment {
         String imageUrl = args.getString("imageUrl", "");
         String retrait = args.getString("retrait", "");
         String horaire = args.getString("horaire", "");
-        String portion = args.getString("portion", "");
+        String portion = args.getString("portion", "1");
         String userId = args.getString("userId", "");
 
         // Vues
         TextView nomPlat = view.findViewById(R.id.nomPlatMini);
         TextView prixPlat = view.findViewById(R.id.prixPlatMini);
         ImageView imagePlat = view.findViewById(R.id.imagePlatMini);
-        TextView portionsText = view.findViewById(R.id.nombre_portions);
         TextView nomUser = view.findViewById(R.id.nomUser);
         TextView appartUser = view.findViewById(R.id.appartementUser);
         RatingBar ratingBar = view.findViewById(R.id.ratingBar);
@@ -59,10 +52,40 @@ public class DetailCommandeFragment extends Fragment {
         TextView retraitText = view.findViewById(R.id.retraitText);
         Button checkoutButton = view.findViewById(R.id.checkoutButton);
 
+        TextView textQuantite = view.findViewById(R.id.textQuantite);
+        Button buttonPlus = view.findViewById(R.id.buttonPlus);
+        Button buttonMoins = view.findViewById(R.id.buttonMoins);
+
+        final int[] quantite = {1};
+
+        // Convertir le prix de String à float
+        float prixUnitaire;
+        try {
+            prixUnitaire = Float.parseFloat(prix);
+        } catch (NumberFormatException e) {
+            prixUnitaire = 0;
+        }
+        final float finalPrixUnitaire = prixUnitaire;
+
+        // Initialiser prix
+        prixPlat.setText(String.format("%.2f €", finalPrixUnitaire * quantite[0]));
+
+        buttonPlus.setOnClickListener(v -> {
+            quantite[0]++;
+            textQuantite.setText(String.valueOf(quantite[0]));
+            prixPlat.setText(String.format("%.2f €", finalPrixUnitaire * quantite[0]));
+        });
+
+        buttonMoins.setOnClickListener(v -> {
+            if (quantite[0] > 1) {
+                quantite[0]--;
+                textQuantite.setText(String.valueOf(quantite[0]));
+                prixPlat.setText(String.format("%.2f €", finalPrixUnitaire * quantite[0]));
+            }
+        });
+
         // Affichage
         nomPlat.setText(nom);
-        prixPlat.setText(prix + " €");
-        portionsText.setText(portion != null && !portion.isEmpty() ? portion : "x1");
         horaireText.setText(horaire);
         retraitText.setText(retrait);
         Glide.with(requireContext()).load(imageUrl).into(imagePlat);
@@ -89,18 +112,19 @@ public class DetailCommandeFragment extends Fragment {
                     });
         }
 
-        // Lancer l’activité de confirmation avec données
+        // Valider commande
         checkoutButton.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), ValidationDeCommande.class);
             intent.putExtra("nom", nom);
-            intent.putExtra("prix", prix);
+            intent.putExtra("prix", prix); // prix unitaire
+            intent.putExtra("prixTotal", finalPrixUnitaire * quantite[0]);
             intent.putExtra("imageUrl", imageUrl);
             intent.putExtra("retrait", retrait);
             intent.putExtra("horaire", horaire);
             intent.putExtra("portion", portion);
             intent.putExtra("userId", userId);
+            intent.putExtra("quantite", quantite[0]);
             startActivity(intent);
         });
     }
 }
-

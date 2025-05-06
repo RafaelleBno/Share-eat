@@ -60,37 +60,60 @@
                     android:textColor="@android:color/white"
                     android:textSize="14sp" />
 
-
             </LinearLayout>
         </LinearLayout>
 
+        <!-- Label Portions -->
+        <TextView
+            android:id="@+id/labelPortions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Portions :"
+            android:textSize="17sp"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="20dp" />
+
+        <!-- Sélecteur de quantité -->
         <LinearLayout
+            android:id="@+id/quantiteContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="20dp">
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="20dp"
+            android:gravity="center_vertical">
 
-            <TextView
-                android:id="@+id/portions"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/portions"
-                android:textSize="17sp"
-                style="@style/TextStyleWhiteRegular" />
-
-            <TextView
-                android:id="@+id/nombre_portions"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="x1"
+            <Button
+                android:id="@+id/buttonMoins"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="-"
+                android:textSize="18sp"
                 android:textColor="@android:color/white"
-                android:textSize="16sp"
-                android:fontFamily="@font/inter_regular"
-                android:layout_marginStart="8dp" />
+                android:backgroundTint="@color/black"/>
+
+            <TextView
+                android:id="@+id/textQuantite"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"
+                android:layout_marginHorizontal="12dp" />
+
+            <Button
+                android:id="@+id/buttonPlus"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="+"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"
+                android:backgroundTint="@color/black"/>
         </LinearLayout>
-
-
 
         <!-- Ligne -->
         <View
@@ -174,5 +197,3 @@
             android:padding="12dp" />
     </LinearLayout>
 </ScrollView>
-
-
