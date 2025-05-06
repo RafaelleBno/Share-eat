@@ -9,27 +9,24 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="12dp">
+        android:layout_height="120dp"
+        android:orientation="horizontal">
 
-        <!-- Image du plat -->
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imagePlat"
             android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_launcher_background"
             android:contentDescription="Image du plat"
-            android:background="@drawable/rounded_image_bg" />
+            app:shapeAppearanceOverlay="@style/LeftRoundedImage" />
 
-        <!-- Contenu à droite -->
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:paddingStart="12dp">
+            android:padding="12dp">
 
             <TextView
                 android:id="@+id/nomPlat"
@@ -39,7 +36,10 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/inter_bold"
-                android:textColor="#000000" />
+                android:textColor="#000000"
+                android:maxLines="1"
+                android:ellipsize="end" />
+
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -96,7 +96,6 @@
                     android:textColor="#444" />
             </LinearLayout>
 
-            <!-- Étoiles -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -110,29 +109,29 @@
             </LinearLayout>
         </LinearLayout>
 
-        <!-- Colonne droite : like + delete + prix -->
+        <!-- COLONNE MODIFIÉE -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:gravity="end">
+            android:gravity="end"
+            android:paddingEnd="16dp"> <!-- marge à droite ajoutée -->
 
-            <!-- Ligne contenant like et delete -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingTop="5dp"> <!-- un peu d'espace en haut -->
 
-                <!-- Like -->
                 <ImageButton
                     android:id="@+id/likeButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_heart_outline"
                     android:background="@android:color/transparent"
+                    android:layout_marginTop="9dp"
                     android:contentDescription="Like" />
 
-                <!-- Delete -->
                 <ImageButton
                     android:id="@+id/deleteButton"
                     android:layout_width="18dp"
@@ -140,28 +139,26 @@
                     android:src="@drawable/ic_close"
                     android:background="@android:color/transparent"
                     android:contentDescription="Supprimer"
-                    android:layout_marginStart="55dp" />
-
+                    android:layout_marginTop="9dp"
+                    android:layout_marginStart="20dp" />
             </LinearLayout>
 
-            <!-- View espaceur -->
             <View
                 android:layout_width="1dp"
                 android:layout_height="0dp"
                 android:layout_weight="1" />
 
-            <!-- Prix -->
             <TextView
                 android:id="@+id/prixPlat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:fontFamily="@font/inter_bold"
                 android:text="3 €"
                 android:textColor="#000"
-                android:textSize="16sp"
-                android:fontFamily="@font/inter_bold"
-                android:layout_marginTop="12dp" />
+                android:textSize="16sp" />
         </LinearLayout>
-
     </LinearLayout>
 </androidx.cardview.widget.CardView>
 
