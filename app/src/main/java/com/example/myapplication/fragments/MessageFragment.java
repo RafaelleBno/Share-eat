@@ -33,9 +33,7 @@ public class MessageFragment extends Fragment {
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState
     ) {
-<<<<<<< HEAD
-        return inflater.inflate(R.layout.fragment_historique, container, false);
-=======
+
         // Infla le layout du fragment
         View view = inflater.inflate(R.layout.fragment_message, container, false);
 
@@ -93,7 +91,6 @@ public class MessageFragment extends Fragment {
         // Mettre à jour les données dans l'adaptateur
         adapter = new MessageAdapter(filteredMessages);
         recyclerView.setAdapter(adapter);
->>>>>>> 22a936152c33ac7a8a5a9b6daab2c8a4178c2ae4
     }
 }
 

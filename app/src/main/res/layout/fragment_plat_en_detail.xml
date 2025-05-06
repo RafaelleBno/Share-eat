@@ -205,18 +205,26 @@
             app:layout_constraintTop_toBottomOf="@id/text_descrpition"
             app:layout_constraintStart_toStartOf="parent" />
 
+        <Spinner
+            android:id="@+id/portion_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:backgroundTint="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/portions"
+            app:layout_constraintStart_toStartOf="parent" />
+
         <TextView
             android:id="@+id/nombre_portions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2 portions"
+            android:text="portions en g"
             android:textColor="@android:color/white"
+            android:layout_marginTop="8dp"
             android:textSize="16sp"
             android:fontFamily="@font/inter_regular"
-            android:layout_marginTop="8dp"
-            android:layout_marginStart="20dp"
-            app:layout_constraintTop_toBottomOf="@id/portions"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/portion_spinner"
+            app:layout_constraintStart_toEndOf="@id/portion_spinner" />
 
         <!-- Mode de retrait -->
         <TextView
@@ -228,7 +236,7 @@
             style="@style/TextStyleWhiteRegular"
             android:layout_marginTop="16dp"
             android:layout_marginStart="20dp"
-            app:layout_constraintTop_toBottomOf="@id/nombre_portions"
+            app:layout_constraintTop_toBottomOf="@id/portion_spinner"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
