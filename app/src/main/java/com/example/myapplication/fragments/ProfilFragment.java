@@ -4,15 +4,18 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.*;
 import android.widget.*;
+
 import androidx.annotation.*;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.*;
+
 import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
 import com.example.myapplication.adapters.PlatAdapter;
 import com.example.myapplication.models.Plat;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.*;
+
 import java.util.*;
 
 public class ProfilFragment extends Fragment {
@@ -51,12 +54,20 @@ public class ProfilFragment extends Fragment {
         adapter = new PlatAdapter(requireContext(), platList, plat -> {});
         rvPosts.setAdapter(adapter);
 
+        // 💰 Wallet (non fonctionnel)
         btnWallet.setOnClickListener(v ->
                 Toast.makeText(getContext(), "Wallet bientôt dispo", Toast.LENGTH_SHORT).show());
 
-        btnOrder.setOnClickListener(v ->
-                Toast.makeText(getContext(), "Commandes à venir", Toast.LENGTH_SHORT).show());
+        // ✅ Commandes : ouvre OrderFragment (comme Favoris)
+        btnOrder.setOnClickListener(v -> {
+            requireActivity().getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, new OrderFragment()) // ← AFFICHAGE DÉDIÉ
+                    .addToBackStack(null)
+                    .commit();
+        });
 
+        // ❤️ Favoris
         btnFavoris.setOnClickListener(v -> {
             requireActivity().getSupportFragmentManager()
                     .beginTransaction()
@@ -65,8 +76,8 @@ public class ProfilFragment extends Fragment {
                     .commit();
         });
 
-        loadUserInfo();
-        loadUserPlats();
+        loadUserInfo();    // chargement infos profil
+        loadUserPlats();   // plats postés par l'utilisateur
     }
 
     private void loadUserInfo() {

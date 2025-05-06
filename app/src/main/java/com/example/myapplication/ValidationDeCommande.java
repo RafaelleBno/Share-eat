@@ -10,6 +10,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.example.myapplication.models.Plat;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class ValidationDeCommande extends AppCompatActivity {
@@ -25,7 +27,7 @@ public class ValidationDeCommande extends AppCompatActivity {
         Button helpButton = findViewById(R.id.help_button);
         Button closeButton = findViewById(R.id.close_button);
 
-        // Récupérer les données
+        // Récupérer les données de l'intent
         Intent intent = getIntent();
         String nom = intent.getStringExtra("nom");
         String prix = intent.getStringExtra("prix");
@@ -35,16 +37,38 @@ public class ValidationDeCommande extends AppCompatActivity {
         String portion = intent.getStringExtra("portion");
         String userId = intent.getStringExtra("userId");
 
-        // Affichage
+        // Affichage de l'image du plat
         if (imageUrl != null && !imageUrl.isEmpty()) {
             Glide.with(this).load(imageUrl).into(imagePlat);
         } else {
             imagePlat.setImageResource(R.drawable.ic_launcher_background);
         }
 
-        // Optionnel : afficher d'autres champs si tu les veux visibles
+        // ✅ Enregistrer la commande dans Firestore
+        if (userId != null && nom != null && prix != null && imageUrl != null) {
+            Plat platCommande = new Plat();
+            platCommande.nom = nom;
+            platCommande.prix = prix;
+            platCommande.imageUrl = imageUrl;
+            platCommande.retrait = retrait;
+            platCommande.horaire = horaire;
+            platCommande.portion = portion;
+            platCommande.timestamp = Timestamp.now();
 
-        // Firestore : afficher prénom et appart
+            FirebaseFirestore.getInstance()
+                    .collection("users")
+                    .document(userId)
+                    .collection("commandes")
+                    .add(platCommande)
+                    .addOnSuccessListener(docRef -> {
+                        Toast.makeText(this, "Commande enregistrée ✅", Toast.LENGTH_SHORT).show();
+                    })
+                    .addOnFailureListener(e -> {
+                        Toast.makeText(this, "Erreur enregistrement commande ❌", Toast.LENGTH_SHORT).show();
+                    });
+        }
+
+        // Afficher prénom et appart utilisateur (si besoin)
         if (userId != null && !userId.isEmpty()) {
             FirebaseFirestore.getInstance()
                     .collection("users")
@@ -54,6 +78,7 @@ public class ValidationDeCommande extends AppCompatActivity {
                         if (snapshot.exists()) {
                             String prenom = snapshot.getString("firstName");
                             String appart = snapshot.getString("apartment");
+                            // Tu peux afficher ça si tu as des TextView prévus pour
                         }
                     });
         }
@@ -70,4 +95,3 @@ public class ValidationDeCommande extends AppCompatActivity {
         });
     }
 }
-
