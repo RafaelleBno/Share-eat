@@ -1,5 +1,6 @@
 package com.example.myapplication.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.*;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.*;
 
 import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
+import com.example.myapplication.WalletActivity;
 import com.example.myapplication.adapters.PlatAdapter;
 import com.example.myapplication.models.Plat;
 import com.google.firebase.auth.FirebaseAuth;
@@ -55,8 +57,11 @@ public class ProfilFragment extends Fragment {
         rvPosts.setAdapter(adapter);
 
         // 💰 Wallet (non fonctionnel)
-        btnWallet.setOnClickListener(v ->
-                Toast.makeText(getContext(), "Wallet bientôt dispo", Toast.LENGTH_SHORT).show());
+        btnWallet.setOnClickListener(v ->{
+            Intent intent = new Intent(getActivity(), WalletActivity.class);
+            startActivity(intent);
+        });
+        //Toast.makeText(getContext(), "Wallet bientôt dispo", Toast.LENGTH_SHORT).show());
 
         // ✅ Commandes : ouvre OrderFragment (comme Favoris)
         btnOrder.setOnClickListener(v -> {
