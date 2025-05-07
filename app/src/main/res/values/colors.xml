@@ -5,4 +5,6 @@
     <color name="green">#4F0001</color>
     <color name="red">#AB3129</color>
     <color name="bottom_bar_icon_color">#BA1D3E</color>
+    <color name="ab3129">#FFAB3129</color>
+
 </resources>

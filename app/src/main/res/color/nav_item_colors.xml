@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Quand l’item est sélectionné -->
+    <item
+        android:color="@color/ab3129"
+        android:state_checked="true" />
+    <!-- Quand on appuie / on survole -->
+    <item
+        android:color="#80AB3129"
+        android:state_pressed="true" />
+    <!-- État par défaut -->
+    <item
+        android:color="@color/ab3129" />
+</selector>
