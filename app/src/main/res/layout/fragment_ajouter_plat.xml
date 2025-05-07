@@ -22,10 +22,10 @@
                 android:id="@+id/platImageView"
                 android:layout_width="match_parent"
                 android:layout_height="220dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_launcher_background"
+                android:layout_marginBottom="16dp"
                 android:contentDescription="Image du plat"
-                android:layout_marginBottom="16dp" />
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher_background" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -39,8 +39,8 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:hint="Nom du plat"
-                    android:textColor="#000"
-                    android:background="@null"
+                    android:textColor="@color/black"
+                    android:background="@color/white"
                     android:textSize="20sp"
                     android:fontFamily="@font/inter_bold" />
 
@@ -50,8 +50,8 @@
                     android:layout_height="wrap_content"
                     android:hint="2 €"
                     android:inputType="numberDecimal"
-                    android:background="@null"
-                    android:textColor="#000"
+                    android:background="@android:drawable/edit_text"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
                     android:fontFamily="@font/inter_bold"
                     android:layout_marginStart="12dp" />
@@ -199,7 +199,7 @@
                 android:background="@android:drawable/edit_text"
                 android:padding="10dp"
                 android:fontFamily="@font/inter_light"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:layout_marginBottom="16dp" />
 
             <!-- Portion : nombre de portions à vendre -->
@@ -217,7 +217,7 @@
                     android:inputType="number"
                     android:paddingStart="8dp"
                     android:background="@android:drawable/edit_text"
-                    android:textColor="#000"
+                    android:textColor="@color/black"
                     android:fontFamily="@font/inter_regular" />
             </LinearLayout>
 
@@ -263,7 +263,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Horaire de retrait :"
-                android:textColor="#000"
+                style="@style/TextStyleWhiteRegular"
                 android:textSize="16sp"
                 android:fontFamily="@font/inter_regular"
                 android:layout_marginBottom="4dp" />
@@ -273,7 +273,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="19:00 – 19h15"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:background="@android:drawable/edit_text"
                 android:padding="10dp"
                 android:fontFamily="@font/inter_regular"
@@ -284,10 +284,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="ADD"
-                android:textStyle="bold"
+                style="@style/TextStyleWhiteBold"
                 android:textAllCaps="true"
-                android:textColor="#fff"
-                android:background="#000"
+                android:textColor="@color/white"
+                android:background="@color/black"
                 android:fontFamily="@font/inter_bold"
                 android:padding="12dp"
                 android:layout_marginTop="8dp"
