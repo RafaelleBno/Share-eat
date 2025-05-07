@@ -58,7 +58,7 @@ public class ProfilFragment extends Fragment {
 
         // 💰 Wallet (non fonctionnel)
         btnWallet.setOnClickListener(v ->{
-            Intent intent = new Intent(getActivity(), WalletActivity.class);
+            Intent intent = new Intent(getContext(), WalletActivity.class);
             startActivity(intent);
         });
         //Toast.makeText(getContext(), "Wallet bientôt dispo", Toast.LENGTH_SHORT).show());
