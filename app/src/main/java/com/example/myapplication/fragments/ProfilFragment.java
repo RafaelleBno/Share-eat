@@ -10,6 +10,7 @@ import androidx.annotation.*;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.*;
 
+import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
 import com.example.myapplication.WalletActivity;
 import com.example.myapplication.adapters.PlatAdapter;
@@ -55,14 +56,14 @@ public class ProfilFragment extends Fragment {
         adapter = new PlatAdapter(requireContext(), platList, plat -> {});
         rvPosts.setAdapter(adapter);
 
-        // Wallet
+        // 💰 Wallet (non fonctionnel)
         btnWallet.setOnClickListener(v ->{
             Intent intent = new Intent(getActivity(), WalletActivity.class);
             startActivity(intent);
         });
         //Toast.makeText(getContext(), "Wallet bientôt dispo", Toast.LENGTH_SHORT).show());
 
-        // Commandes : ouvre OrderFragment (comme Favoris)
+        // ✅ Commandes : ouvre OrderFragment (comme Favoris)
         btnOrder.setOnClickListener(v -> {
             requireActivity().getSupportFragmentManager()
                     .beginTransaction()
@@ -71,7 +72,7 @@ public class ProfilFragment extends Fragment {
                     .commit();
         });
 
-        // Favoris
+        // ❤️ Favoris
         btnFavoris.setOnClickListener(v -> {
             requireActivity().getSupportFragmentManager()
                     .beginTransaction()

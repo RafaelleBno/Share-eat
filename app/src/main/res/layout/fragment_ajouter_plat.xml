@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -38,8 +39,9 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:hint="Nom du plat"
-                    android:textColor="@color/black"
-                    android:background="@color/white"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#CCB28A8A"
+                    android:background="@null"
                     android:textSize="20sp"
                     android:fontFamily="@font/inter_bold" />
 
@@ -49,11 +51,13 @@
                     android:layout_height="wrap_content"
                     android:hint="2 €"
                     android:inputType="numberDecimal"
-                    android:background="@android:drawable/edit_text"
-                    android:textColor="@color/black"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#CCB28A8A"
+                    android:background="@null"
                     android:textSize="20sp"
                     android:fontFamily="@font/inter_bold"
                     android:layout_marginStart="12dp" />
+
 
             </LinearLayout>
 
@@ -79,7 +83,8 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Gluten"
-                    android:textColor="@color/white"
+                    android:backgroundTint="@color/white"
+                    android:textColor="@color/black"
                     android:checkable="true"
                     android:minHeight="48dp" />
 
@@ -90,7 +95,8 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Arachide"
-                    android:textColor="@color/white"
+                    android:backgroundTint="@color/white"
+                    android:textColor="@color/black"
                     android:checkable="true"
                     android:minHeight="48dp" />
 
@@ -101,7 +107,8 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Œuf"
-                    android:textColor="@color/white"
+                    android:backgroundTint="@color/white"
+                    android:textColor="@color/black"
                     android:checkable="true"
                     android:minHeight="48dp" />
 
@@ -112,7 +119,8 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Lait"
-                    android:textColor="@color/white"
+                    android:backgroundTint="@color/white"
+                    android:textColor="@color/black"
                     android:checkable="true"
                     android:minHeight="48dp" />
             </com.google.android.material.button.MaterialButtonToggleGroup>
@@ -137,7 +145,8 @@
                     style="?attr/materialButtonOutlinedStyle"
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:textColor="@color/white"
+                    android:backgroundTint="@color/white"
+                    android:textColor="@color/black"
                     android:layout_height="wrap_content"
                     android:text="Vegan"
                     android:checkable="true"
@@ -151,7 +160,8 @@
                     android:layout_height="wrap_content"
                     android:text="Végétarien"
                     android:checkable="true"
-                    android:textColor="@color/white"
+                    android:backgroundTint="@color/white"
+                    android:textColor="@color/black"
                     android:minHeight="48dp" />
 
                 <com.google.android.material.button.MaterialButton
@@ -161,7 +171,8 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Halal"
-                    android:textColor="@color/white"
+                    android:backgroundTint="@color/white"
+                    android:textColor="@color/black"
                     android:checkable="true"
                     android:minHeight="48dp" />
 
@@ -172,7 +183,8 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Kasher"
-                    android:textColor="@color/white"
+                    android:backgroundTint="@color/white"
+                    android:textColor="@color/black"
                     android:checkable="true"
                     android:minHeight="48dp" />
             </com.google.android.material.button.MaterialButtonToggleGroup>
@@ -195,39 +207,36 @@
                 android:inputType="textMultiLine"
                 android:scrollbars="vertical"
                 android:overScrollMode="ifContentScrolls"
-                android:background="@android:drawable/edit_text"
+                android:background="@drawable/edittext_background"
                 android:padding="10dp"
                 android:fontFamily="@font/inter_light"
                 android:textColor="@color/black"
                 android:layout_marginBottom="16dp" />
 
+
             <!-- Portion : nombre de portions à vendre -->
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:orientation="horizontal"
                 android:layout_marginBottom="16dp">
 
                 <EditText
                     android:id="@+id/nbPortionsEditText"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="120dp"
+                    android:layout_height="48dp"
                     android:hint="Portions"
                     android:inputType="number"
-                    android:paddingStart="8dp"
-                    android:background="@android:drawable/edit_text"
-                    android:textColor="@color/black"
+                    android:paddingHorizontal="12dp"
+                    android:background="@drawable/edittext_background"
+                    android:textColor="#000000"
+                    android:textColorHint="#888888"
+                    android:textSize="16sp"
+                    android:gravity="center"
                     android:fontFamily="@font/inter_regular" />
             </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Mode de retrait :"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:fontFamily="@font/inter_regular"
-                android:layout_marginBottom="4dp" />
 
             <com.google.android.material.button.MaterialButtonToggleGroup
                 android:id="@+id/retraitGroup"
@@ -242,7 +251,8 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Pick-up"
-                    android:textColor="@color/white"
+                    android:backgroundTint="@color/white"
+                    android:textColor="@color/black"
                     android:checkable="true"
                     android:minHeight="48dp" />
 
@@ -253,7 +263,8 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Home"
-                    android:textColor="@color/white"
+                    android:backgroundTint="@color/white"
+                    android:textColor="@color/black"
                     android:checkable="true"
                     android:minHeight="48dp" />
             </com.google.android.material.button.MaterialButtonToggleGroup>
@@ -262,35 +273,45 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Horaire de retrait :"
-                style="@style/TextStyleWhiteRegular"
+                android:textColor="#FFFFFF"
                 android:textSize="16sp"
                 android:fontFamily="@font/inter_regular"
                 android:layout_marginBottom="4dp" />
 
+
             <EditText
                 android:id="@+id/horaireRetrait"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:minWidth="160dp"
                 android:hint="19:00 – 19h15"
+                android:inputType="text"
+                android:background="@drawable/edittext_background"
+                android:paddingHorizontal="12dp"
+                android:textColorHint="#888888"
                 android:textColor="@color/black"
-                android:background="@android:drawable/edit_text"
-                android:padding="10dp"
+                android:textSize="16sp"
+                android:gravity="center_vertical"
                 android:fontFamily="@font/inter_regular"
                 android:layout_marginBottom="24dp" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/addDishButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="ADD"
-                style="@style/TextStyleWhiteBold"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:background="@color/black"
-                android:fontFamily="@font/inter_bold"
-                android:padding="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="24dp" />
+                android:text="Add"
+                android:textAllCaps="false"
+                android:background="@drawable/button_green_outline"
+                android:backgroundTint="@null"
+                android:textColor="@color/white"
+                android:paddingHorizontal="24dp"
+                android:paddingTop="1dp"
+                android:paddingBottom="1dp"
+                android:textSize="14sp"
+                android:fontFamily="@font/inter_regular" />
+
+
         </LinearLayout>
     </ScrollView>
 </FrameLayout>

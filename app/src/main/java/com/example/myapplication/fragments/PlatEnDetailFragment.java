@@ -4,11 +4,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -77,7 +75,7 @@ public class PlatEnDetailFragment extends Fragment {
         prixPlat.setText(prix + " €");
         desc.setText(description);
         horaireBtn.setText(horaire);
-        portionText.setText("x " + portion);
+        portionText.setText("Portion : " + portion);
         Glide.with(requireContext()).load(imageUrl).into(imagePlat);
 
         retraitButton.setVisibility("Home".equalsIgnoreCase(retrait) ? View.GONE : View.VISIBLE);
@@ -86,23 +84,6 @@ public class PlatEnDetailFragment extends Fragment {
         glutenBtn.setVisibility(allergenes.contains("Gluten") ? View.VISIBLE : View.GONE);
         lactoseBtn.setVisibility(
                 allergenes.contains("Lait") || allergenes.contains("Lactose") ? View.VISIBLE : View.GONE);
-
-        // spinner en blanc
-        Spinner spinner = view.findViewById(R.id.portion_spinner);
-
-        List<String> portions = Arrays.asList("1", "2", "3");
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                getContext(),
-                R.layout.spinner_item_white,
-                portions
-        );
-
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-
-        //----
-
 
         // On récupère les infos de l'utilisateur depuis Firestore
         if (!userId.isEmpty()) {

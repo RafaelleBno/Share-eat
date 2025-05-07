@@ -4,6 +4,6 @@
     <string name="google_api_key" translatable="false">AIzaSyAJ4G3DBGacBkSfF9f_Aq_PKqZnjyTZrVk</string>
     <string name="google_app_id" translatable="false">1:23219035639:android:615e1d86d8808e3a2f62f2</string>
     <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAJ4G3DBGacBkSfF9f_Aq_PKqZnjyTZrVk</string>
-    <string name="google_storage_bucket" translatable="false">share-eat-9f8a0.appspot.com</string>
+    <string name="google_storage_bucket" translatable="false">share-eat-9f8a0.firebasestorage.app</string>
     <string name="project_id" translatable="false">share-eat-9f8a0</string>
 </resources>

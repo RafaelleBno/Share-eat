@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
 import com.example.myapplication.ValidationDeCommande;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class DetailCommandeFragment extends Fragment {
@@ -115,54 +114,17 @@ public class DetailCommandeFragment extends Fragment {
 
         // Valider commande
         checkoutButton.setOnClickListener(v -> {
-            FirebaseAuth mAuth = FirebaseAuth.getInstance();
-            String currentUserId = mAuth.getCurrentUser().getUid();  // ID utilisateur connecté
-
-            boolean isOwner = userId != null && userId.equals(currentUserId);  // userId du plat vs utilisateur connecté
-            double prixTotal = finalPrixUnitaire * quantite[0];
-
-            FirebaseFirestore.getInstance()
-                    .collection("users")
-                    .document(currentUserId)
-                    .get()
-                    .addOnSuccessListener(userSnapshot -> {
-                        if (userSnapshot.exists()) {
-                            double wallet = userSnapshot.getDouble("wallet") != null ? userSnapshot.getDouble("wallet") : 0;
-
-                            // Mise à jour du wallet
-                            if (isOwner) {
-                                wallet += prixTotal;
-                            } else {
-                                wallet -= prixTotal;
-                            }
-
-                            // Sauvegarder le nouveau montant
-                            FirebaseFirestore.getInstance()
-                                    .collection("users")
-                                    .document(currentUserId)
-                                    .update("wallet", wallet)
-                                    .addOnSuccessListener(aVoid -> {
-                                        // Lancer l'activité de validation
-                                        Intent intent = new Intent(getContext(), ValidationDeCommande.class);
-                                        intent.putExtra("nom", nom);
-                                        intent.putExtra("prix", prix); // prix unitaire
-                                        intent.putExtra("prixTotal", prixTotal);
-                                        intent.putExtra("imageUrl", imageUrl);
-                                        intent.putExtra("retrait", retrait);
-                                        intent.putExtra("horaire", horaire);
-                                        intent.putExtra("portion", portion);
-                                        intent.putExtra("userId", userId);
-                                        intent.putExtra("quantite", quantite[0]);
-                                        startActivity(intent);
-                                    })
-                                    .addOnFailureListener(e -> {
-                                        Toast.makeText(getContext(), "Erreur de mise à jour du wallet", Toast.LENGTH_SHORT).show();
-                                    });
-                        }
-                    })
-                    .addOnFailureListener(e -> {
-                        Toast.makeText(getContext(), "Erreur de récupération du wallet", Toast.LENGTH_SHORT).show();
-                    });
+            Intent intent = new Intent(getContext(), ValidationDeCommande.class);
+            intent.putExtra("nom", nom);
+            intent.putExtra("prix", prix); // prix unitaire
+            intent.putExtra("prixTotal", finalPrixUnitaire * quantite[0]);
+            intent.putExtra("imageUrl", imageUrl);
+            intent.putExtra("retrait", retrait);
+            intent.putExtra("horaire", horaire);
+            intent.putExtra("portion", portion);
+            intent.putExtra("userId", userId);
+            intent.putExtra("quantite", quantite[0]);
+            startActivity(intent);
         });
     }
 }
