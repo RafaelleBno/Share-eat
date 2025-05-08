@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">M\'Eat</string>
 
-    <!-- Strings pour la page du plat en détail -->
     <string name="pates_bolognaises">Pâtes bolognaises</string>
     <string name="trois_euros">3 €</string>
     <string name="allergenes">Allergènes : </string>
@@ -21,7 +20,6 @@
     <string name="quatre_etoiles">4 étoiles</string>
 
 
-    <!-- portions menu déroulant liste fixe, à changer en java après-->
     <string-array name="portions_array">
         <item>1</item>
         <item>2</item>
@@ -35,13 +33,11 @@
         <item>Home</item>
     </string-array>
 
-    <!-- Strings pour la page de validation de commande -->
     <string name="enjoy_your_order">Enjoy your order !</string>
     <string name="dont_forget_container">Don\'t forget to take a container to make it easier.</string>
     <string name="close">Close</string>
     <string name="help">Help</string>
 
-    <!-- Strings pour la page de detail de la commande -->
     <string name="your_order">Your order</string>
     <string name="une_portion">1 pc</string>
     <string name="num_appartement">1288</string>
@@ -50,8 +46,6 @@
     <string name="therese_papillon">Thérèse Papillon,</string>
     <string name="deuxieme_etage">2ème</string>
     <string name="fermer_page">Fermer la page</string>
-
-    <!-- Strings pour la page de profil (raf) -->
 
     <style name="ProfileShortcut">
         <item name="android:layout_width">80dp</item>

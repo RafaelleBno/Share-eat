@@ -18,11 +18,11 @@ public class WalletActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_wallet); // Ton fichier XML existant
+        setContentView(R.layout.activity_wallet);
 
         walletTextView = findViewById(R.id.prixwallet); // Le TextView qui affiche le montant
 
-        // Gérer le bouton retour (fleche_retour)
+        // Gérer le bouton retour
         ImageView flecheRetour = findViewById(R.id.fleche);
         flecheRetour.setOnClickListener(v -> finish());
 

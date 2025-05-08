@@ -11,7 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- Titre -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -21,7 +20,6 @@
             android:textColor="@android:color/white"
             android:layout_marginBottom="16dp" />
 
-        <!-- Image + Nom/€ -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -63,7 +61,6 @@
             </LinearLayout>
         </LinearLayout>
 
-        <!-- Label Portions -->
         <TextView
             android:id="@+id/labelPortions"
             android:layout_width="wrap_content"
@@ -75,7 +72,6 @@
             android:layout_marginTop="16dp"
             android:layout_marginStart="20dp" />
 
-        <!-- Sélecteur de quantité -->
         <LinearLayout
             android:id="@+id/quantiteContainer"
             android:layout_width="wrap_content"
@@ -115,14 +111,12 @@
                 android:backgroundTint="@color/black"/>
         </LinearLayout>
 
-        <!-- Ligne -->
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="#FFFFFF"
             android:layout_marginVertical="12dp" />
 
-        <!-- Localisation + nom -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -155,7 +149,6 @@
                 android:layout_marginStart="4dp" />
         </LinearLayout>
 
-        <!-- Rating -->
         <RatingBar
             android:id="@+id/ratingBar"
             android:layout_width="wrap_content"
@@ -167,7 +160,6 @@
             style="@style/Widget.AppCompat.RatingBar.Small"
             android:layout_marginBottom="16dp" />
 
-        <!-- Horaire -->
         <TextView
             android:id="@+id/horaires"
             android:layout_width="wrap_content"
@@ -176,7 +168,6 @@
             android:textColor="@android:color/white"
             android:layout_marginBottom="4dp" />
 
-        <!-- Retrait -->
         <TextView
             android:id="@+id/retraitText"
             android:layout_width="wrap_content"
@@ -185,8 +176,7 @@
             android:textColor="@android:color/white"
             android:layout_marginBottom="24dp" />
 
-        <!-- Bouton checkout -->
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/checkoutButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -195,5 +185,6 @@
             android:textColor="#FFFFFF"
             android:background="#000000"
             android:padding="12dp" />
+
     </LinearLayout>
 </ScrollView>

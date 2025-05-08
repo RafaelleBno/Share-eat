@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="#4F0001">
 
-    <!-- Barre de recherche -->
     <EditText
         android:id="@+id/searchBar"
         android:layout_width="0dp"
@@ -25,7 +24,6 @@
         android:layout_marginTop="24dp"
         android:maxWidth="600dp" />
 
-    <!-- Régimes alimentaires -->
     <LinearLayout
         android:id="@+id/categoryButtons"
         android:layout_width="0dp"
@@ -161,8 +159,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-
-    <!-- RecyclerView des plats -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/dishRecyclerView"
         android:layout_width="0dp"

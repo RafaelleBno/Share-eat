@@ -29,7 +29,6 @@ public class Subscribe extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subscribe);
 
-        /* ---------- initialisation ---------- */
         auth            = FirebaseAuth.getInstance();
         emailInput      = findViewById(R.id.emailInput);
         phoneInput      = findViewById(R.id.phoneInput);
@@ -40,12 +39,10 @@ public class Subscribe extends AppCompatActivity {
         ImageView eyeIcon = findViewById(R.id.eyeIcon);
         nextButton      = findViewById(R.id.nextButton);
 
-        /* ---------- lien "Go to Login" ---------- */
         TextView goToLogin = findViewById(R.id.goToLogin);
         goToLogin.setOnClickListener(v ->
                 startActivity(new Intent(Subscribe.this, Login.class)));
 
-        /* ---------- œil : afficher / masquer le mot de passe ---------- */
         eyeIcon.setOnClickListener(v -> {
             passwordVisible = !passwordVisible;
             if (passwordVisible) {
@@ -57,14 +54,13 @@ public class Subscribe extends AppCompatActivity {
             passwordInput.setSelection(passwordInput.getText().length());
         });
 
-        /* ---------- bouton "Next / Sign up" ---------- */
         nextButton.setOnClickListener(v -> {
             String email     = emailInput.getText().toString().trim();
             String password  = passwordInput.getText().toString().trim();
             String firstName = firstNameInput.getText().toString().trim();
             String lastName  = lastNameInput.getText().toString().trim();
             String apartment = apartmentInput.getText().toString().trim();
-            String phone     = phoneInput.getText().toString().trim();  // ← AJOUT ICI
+            String phone     = phoneInput.getText().toString().trim();
 
             if (email.isEmpty() || password.isEmpty() || firstName.isEmpty()
                     || lastName.isEmpty() || apartment.isEmpty() || phone.isEmpty()) {
@@ -77,7 +73,7 @@ public class Subscribe extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Toast.makeText(this, "Account created successfully!", Toast.LENGTH_SHORT).show();
 
-                            // ▶ enregistrement des infos dans Firestore
+                            // enregistrement des infos dans Firestore
                             String uid = auth.getCurrentUser().getUid();
                             FirebaseFirestore.getInstance().collection("users")
                                     .document(uid)
@@ -89,7 +85,7 @@ public class Subscribe extends AppCompatActivity {
                                         put("phone", phoneInput.getText().toString().trim());
                                     }});
 
-                            // ▶ redirection vers MainActivity + onglet Home
+                            // redirection vers MainActivity + onglet Home
                             Intent intent = new Intent(this, MainActivity.class);
                             intent.putExtra("nav_item", R.id.menu_home);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

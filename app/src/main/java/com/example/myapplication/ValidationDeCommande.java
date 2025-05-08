@@ -27,7 +27,6 @@ public class ValidationDeCommande extends AppCompatActivity {
         Button helpButton = findViewById(R.id.help_button);
         Button closeButton = findViewById(R.id.close_button);
 
-        // Récupérer les données de l'intent
         Intent intent = getIntent();
         String nom = intent.getStringExtra("nom");
         String prix = intent.getStringExtra("prix");
@@ -44,7 +43,7 @@ public class ValidationDeCommande extends AppCompatActivity {
             imagePlat.setImageResource(R.drawable.ic_launcher_background);
         }
 
-        // ✅ Enregistrer la commande dans Firestore
+        // Enregistrer la commande dans Firestore
         if (userId != null && nom != null && prix != null && imageUrl != null) {
             Plat platCommande = new Plat();
             platCommande.nom = nom;
@@ -68,7 +67,7 @@ public class ValidationDeCommande extends AppCompatActivity {
                     });
         }
 
-        // Afficher prénom et appart utilisateur (si besoin)
+        // Afficher prénom et appart utilisateur
         if (userId != null && !userId.isEmpty()) {
             FirebaseFirestore.getInstance()
                     .collection("users")

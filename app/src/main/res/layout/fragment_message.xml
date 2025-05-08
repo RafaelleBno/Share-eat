@@ -6,7 +6,6 @@
     android:background="@color/green"
     tools:context=".fragments.MessageFragment">
 
-    <!-- Barre de recherche -->
     <EditText
         android:id="@+id/searchBar"
         android:layout_width="0dp"
@@ -25,7 +24,6 @@
         android:layout_marginTop="24dp"
         android:maxWidth="600dp" />
 
-    <!-- RecyclerView pour afficher les messages -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/messagesRecyclerView"
         android:layout_width="0dp"

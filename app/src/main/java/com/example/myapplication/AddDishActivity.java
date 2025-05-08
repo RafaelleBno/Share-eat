@@ -9,6 +9,5 @@ public class AddDishActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_dish);
 
-        // Ici il y aura les champs pour remplir et ajouter un plat
     }
 }

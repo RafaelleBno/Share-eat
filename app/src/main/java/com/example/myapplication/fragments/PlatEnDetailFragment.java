@@ -66,7 +66,6 @@ public class PlatEnDetailFragment extends Fragment {
         Button payerButton = view.findViewById(R.id.payerButton);
 
 
-        // On récupère les deux TextView
         TextView nomUser = view.findViewById(R.id.nomUser);
         TextView appartementUser = view.findViewById(R.id.appartementUser);
         RatingBar ratingBar = view.findViewById(R.id.ratingBar);

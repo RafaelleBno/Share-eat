@@ -27,7 +27,7 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        /* ---------- initialisation ---------- */
+
         auth = FirebaseAuth.getInstance();
         loginEmailInput   = findViewById(R.id.loginEmailInput);
         loginPasswordInput = findViewById(R.id.loginPasswordInput);
@@ -35,7 +35,7 @@ public class Login extends AppCompatActivity {
         loginBtn          = findViewById(R.id.loginBtn);
         goToSignup        = findViewById(R.id.goToSignup);
 
-        /* ---------- œil : afficher / masquer le mot de passe ---------- */
+
         loginEyeIcon.setOnClickListener(v -> {
             passwordVisible = !passwordVisible;
             if (passwordVisible) {
@@ -47,7 +47,6 @@ public class Login extends AppCompatActivity {
             loginPasswordInput.setSelection(loginPasswordInput.getText().length());
         });
 
-        /* ---------- bouton Login ---------- */
         loginBtn.setOnClickListener(v -> {
             String email    = loginEmailInput.getText().toString().trim();
             String password = loginPasswordInput.getText().toString().trim();
@@ -77,7 +76,7 @@ public class Login extends AppCompatActivity {
                     });
         });
 
-        /* ---------- lien "Go to Sign-up" ---------- */
+
         goToSignup.setOnClickListener(v ->
                 startActivity(new Intent(Login.this, Subscribe.class)));
     }

@@ -83,7 +83,7 @@ public class FavorisFragment extends Fragment {
                                     Plat plat = doc.toObject(Plat.class);
                                     if (plat != null) {
                                         plat.documentId = doc.getId();
-                                        plat.isLiked = true; // ❤️
+                                        plat.isLiked = true;
                                         favorisList.add(plat);
                                     }
                                 }

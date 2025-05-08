@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- ───────────  FOND  ─────────── -->
+
     <ImageView
         android:id="@+id/backgroundImage"
         android:layout_width="0dp"
@@ -18,7 +18,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- ───────────  CONTENU  ─────────── -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -28,7 +27,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- TITRE -->
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
@@ -41,7 +39,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
 
-        <!-- SOUS-TITRE -->
         <TextView
             android:id="@+id/subtitle"
             android:layout_width="wrap_content"
@@ -53,7 +50,6 @@
             app:layout_constraintTop_toBottomOf="@id/title"
             app:layout_constraintStart_toStartOf="parent"/>
 
-        <!-- NOM + PRÉNOM EN LIGNE -->
         <LinearLayout
             android:id="@+id/nameRow"
             android:layout_width="0dp"
@@ -94,7 +90,6 @@
                 android:textSize="16sp" />
         </LinearLayout>
 
-        <!-- APPARTEMENT -->
         <EditText
             android:id="@+id/apartmentInput"
             android:layout_width="0dp"
@@ -110,7 +105,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
-        <!-- EMAIL -->
         <EditText
             android:id="@+id/emailInput"
             android:layout_width="0dp"
@@ -126,7 +120,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
-        <!-- PHONE INPUT -->
         <EditText
             android:id="@+id/phoneInput"
             android:layout_width="0dp"
@@ -142,7 +135,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
-        <!-- PASSWORD -->
         <EditText
             android:id="@+id/passwordInput"
             android:layout_width="0dp"
@@ -158,7 +150,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
-        <!-- EYE ICON -->
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/eyeIcon"
             android:layout_width="24dp"
@@ -171,7 +162,6 @@
             app:layout_constraintBottom_toBottomOf="@id/passwordInput"
             android:layout_marginEnd="16dp"/>
 
-        <!-- NEXT BUTTON -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/nextButton"
             android:layout_width="0dp"
@@ -188,7 +178,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
-        <!-- GO TO LOGIN -->
         <TextView
             android:id="@+id/goToLogin"
             android:layout_width="wrap_content"

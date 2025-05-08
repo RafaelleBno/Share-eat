@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="#0f3b18">
 
-    <!-- Logo plein écran -->
     <ImageView
         android:id="@+id/splashLogo"
         android:layout_width="0dp"
@@ -19,7 +18,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Rond de chargement centré sous l’image -->
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleLarge"

@@ -109,19 +109,18 @@
             </LinearLayout>
         </LinearLayout>
 
-        <!-- COLONNE MODIFIÉE -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:gravity="end"
-            android:paddingEnd="16dp"> <!-- marge à droite ajoutée -->
+            android:paddingEnd="16dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingTop="5dp"> <!-- un peu d'espace en haut -->
+                android:paddingTop="5dp">
 
                 <ImageButton
                     android:id="@+id/likeButton"

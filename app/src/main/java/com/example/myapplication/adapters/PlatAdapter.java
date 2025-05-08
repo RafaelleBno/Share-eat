@@ -50,12 +50,10 @@ public class PlatAdapter extends RecyclerView.Adapter<PlatAdapter.PlatViewHolder
         holder.appartementUser.setText(plat.userAppartement != null ? " | " + plat.userAppartement : "");
         Glide.with(context).load(plat.imageUrl).into(holder.imagePlat);
 
-        // 🔴 Met à jour l'icône du cœur
         holder.likeButton.setImageResource(
                 plat.isLiked ? R.drawable.ic_heart_filled : R.drawable.ic_heart_outline
         );
 
-        // ❤️ Gère le clic sur le cœur
         holder.likeButton.setOnClickListener(v -> {
             plat.isLiked = !plat.isLiked;
             notifyItemChanged(holder.getAdapterPosition());
@@ -76,7 +74,6 @@ public class PlatAdapter extends RecyclerView.Adapter<PlatAdapter.PlatViewHolder
             }
         });
 
-        // Supprimer
         holder.deleteButton.setOnClickListener(v -> {
             FirebaseFirestore.getInstance()
                     .collection("plats")
@@ -120,7 +117,7 @@ public class PlatAdapter extends RecyclerView.Adapter<PlatAdapter.PlatViewHolder
             nomUser = itemView.findViewById(R.id.nomUser);
             appartementUser = itemView.findViewById(R.id.appartementUser);
             likeButton = itemView.findViewById(R.id.likeButton);
-            deleteButton = itemView.findViewById(R.id.deleteButton); // ← Assure-toi que ce bouton est bien défini dans le XML
+            deleteButton = itemView.findViewById(R.id.deleteButton);
         }
     }
 }

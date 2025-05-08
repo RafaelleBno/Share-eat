@@ -23,22 +23,20 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
-        /* ---- fragment de départ : vient du Login/Subscribe ou, à défaut, Home ---- */
+
         int startItem = getIntent().getIntExtra("nav_item", R.id.menu_home);
 
         if (savedInstanceState == null) {
-            selectFragment(startItem);               // charge le fragment voulu
+            selectFragment(startItem);
             bottomNavigationView.setSelectedItemId(startItem);
         }
 
-        /* ---- listener BottomNavigationView ---- */
         bottomNavigationView.setOnItemSelectedListener(item -> {
             selectFragment(item.getItemId());
             return true;
         });
     }
 
-    /** Affiche le fragment correspondant à l’id de menu donné */
     private void selectFragment(int id) {
         Fragment fragment = null;
 
@@ -52,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /** Remplace le fragment courant par celui passé en paramètre */
     private void loadFragment(@NonNull Fragment fragment) {
         getSupportFragmentManager()
                 .beginTransaction()

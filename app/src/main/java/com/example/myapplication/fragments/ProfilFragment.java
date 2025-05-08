@@ -56,23 +56,19 @@ public class ProfilFragment extends Fragment {
         adapter = new PlatAdapter(requireContext(), platList, plat -> {});
         rvPosts.setAdapter(adapter);
 
-        // 💰 Wallet (non fonctionnel)
         btnWallet.setOnClickListener(v ->{
             Intent intent = new Intent(getContext(), WalletActivity.class);
             startActivity(intent);
         });
-        //Toast.makeText(getContext(), "Wallet bientôt dispo", Toast.LENGTH_SHORT).show());
 
-        // ✅ Commandes : ouvre OrderFragment (comme Favoris)
         btnOrder.setOnClickListener(v -> {
             requireActivity().getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.fragment_container, new OrderFragment()) // ← AFFICHAGE DÉDIÉ
+                    .replace(R.id.fragment_container, new OrderFragment())
                     .addToBackStack(null)
                     .commit();
         });
 
-        // ❤️ Favoris
         btnFavoris.setOnClickListener(v -> {
             requireActivity().getSupportFragmentManager()
                     .beginTransaction()
@@ -81,8 +77,8 @@ public class ProfilFragment extends Fragment {
                     .commit();
         });
 
-        loadUserInfo();    // chargement infos profil
-        loadUserPlats();   // plats postés par l'utilisateur
+        loadUserInfo();
+        loadUserPlats();
     }
 
     private void loadUserInfo() {

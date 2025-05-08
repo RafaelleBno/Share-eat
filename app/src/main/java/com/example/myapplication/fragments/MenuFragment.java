@@ -85,7 +85,7 @@ public class MenuFragment extends Fragment {
         homeButton.setOnClickListener(v -> toggleRetraitFilter("Home"));
 
         veganButton.setOnClickListener(v -> toggleRegimeFilter("Vegan"));
-        vegetarianButton.setOnClickListener(v -> toggleRegimeFilter("Vegetarien")); // orthographe Firestore
+        vegetarianButton.setOnClickListener(v -> toggleRegimeFilter("Vegetarien"));
         halalButton.setOnClickListener(v -> toggleRegimeFilter("Halal"));
         kasherButton.setOnClickListener(v -> toggleRegimeFilter("Kasher"));
 
