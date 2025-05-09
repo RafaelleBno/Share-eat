@@ -83,10 +83,11 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Gluten"
-                    android:backgroundTint="@color/white"
-                    android:textColor="@color/black"
+                    app:backgroundTint="@color/bouton_selectionne"
+                    android:textColor="@android:color/black"
                     android:checkable="true"
-                    android:minHeight="48dp" />
+                    android:minHeight="48dp"
+                    app:rippleColor="@android:color/darker_gray" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnArachide"
@@ -95,10 +96,11 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Arachide"
-                    android:backgroundTint="@color/white"
-                    android:textColor="@color/black"
+                    app:backgroundTint="@color/bouton_selectionne"
+                    android:textColor="@android:color/black"
                     android:checkable="true"
-                    android:minHeight="48dp" />
+                    android:minHeight="48dp"
+                    app:rippleColor="@android:color/darker_gray" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnOeuf"
@@ -107,10 +109,11 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Œuf"
-                    android:backgroundTint="@color/white"
-                    android:textColor="@color/black"
+                    app:backgroundTint="@color/bouton_selectionne"
+                    android:textColor="@android:color/black"
                     android:checkable="true"
-                    android:minHeight="48dp" />
+                    android:minHeight="48dp"
+                    app:rippleColor="@android:color/darker_gray" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnLait"
@@ -119,10 +122,11 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Lait"
-                    android:backgroundTint="@color/white"
-                    android:textColor="@color/black"
+                    app:backgroundTint="@color/bouton_selectionne"
+                    android:textColor="@android:color/black"
                     android:checkable="true"
-                    android:minHeight="48dp" />
+                    android:minHeight="48dp"
+                    app:rippleColor="@android:color/darker_gray" />
             </com.google.android.material.button.MaterialButtonToggleGroup>
 
             <TextView
@@ -145,12 +149,13 @@
                     style="?attr/materialButtonOutlinedStyle"
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:backgroundTint="@color/white"
-                    android:textColor="@color/black"
                     android:layout_height="wrap_content"
                     android:text="Vegan"
+                    app:backgroundTint="@color/bouton_selectionne"
+                    android:textColor="@android:color/black"
                     android:checkable="true"
-                    android:minHeight="48dp" />
+                    android:minHeight="48dp"
+                    app:rippleColor="@android:color/darker_gray" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnVegetarien"
@@ -159,10 +164,11 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Végétarien"
+                    app:backgroundTint="@color/bouton_selectionne"
+                    android:textColor="@android:color/black"
                     android:checkable="true"
-                    android:backgroundTint="@color/white"
-                    android:textColor="@color/black"
-                    android:minHeight="48dp" />
+                    android:minHeight="48dp"
+                    app:rippleColor="@android:color/darker_gray" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnHalal"
@@ -171,10 +177,11 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Halal"
-                    android:backgroundTint="@color/white"
-                    android:textColor="@color/black"
+                    app:backgroundTint="@color/bouton_selectionne"
+                    android:textColor="@android:color/black"
                     android:checkable="true"
-                    android:minHeight="48dp" />
+                    android:minHeight="48dp"
+                    app:rippleColor="@android:color/darker_gray" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnKasher"
@@ -183,11 +190,15 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Kasher"
-                    android:backgroundTint="@color/white"
-                    android:textColor="@color/black"
+                    app:backgroundTint="@color/bouton_selectionne"
+                    android:textColor="@android:color/black"
                     android:checkable="true"
-                    android:minHeight="48dp" />
+                    android:minHeight="48dp"
+                    app:rippleColor="@android:color/darker_gray" />
             </com.google.android.material.button.MaterialButtonToggleGroup>
+
+
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -251,10 +262,11 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Pick-up"
-                    android:backgroundTint="@color/white"
-                    android:textColor="@color/black"
+                    app:backgroundTint="@color/bouton_selectionne"
+                    android:textColor="@android:color/black"
                     android:checkable="true"
-                    android:minHeight="48dp" />
+                    android:minHeight="48dp"
+                    app:rippleColor="@android:color/darker_gray" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnHome"
@@ -263,11 +275,14 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Home"
-                    android:backgroundTint="@color/white"
-                    android:textColor="@color/black"
+                    app:backgroundTint="@color/bouton_selectionne"
+                    android:textColor="@android:color/black"
                     android:checkable="true"
-                    android:minHeight="48dp" />
+                    android:minHeight="48dp"
+                    app:rippleColor="@android:color/darker_gray" />
             </com.google.android.material.button.MaterialButtonToggleGroup>
+
+
 
             <TextView
                 android:layout_width="wrap_content"
