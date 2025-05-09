@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
-
         int startItem = getIntent().getIntExtra("nav_item", R.id.menu_home);
 
         if (savedInstanceState == null) {
@@ -40,10 +39,15 @@ public class MainActivity extends AppCompatActivity {
     private void selectFragment(int id) {
         Fragment fragment = null;
 
-        if (id == R.id.menu_home)         fragment = new MenuFragment();
-        else if (id == R.id.menu_add)     fragment = new AjouterPlatFragment();
-        else if (id == R.id.menu_message) fragment = new MessageFragment();
-        else if (id == R.id.menu_profile) fragment = new ProfilFragment();
+        if (id == R.id.menu_home) {
+            fragment = new MenuFragment();
+        } else if (id == R.id.menu_add) {
+            fragment = new AjouterPlatFragment();
+        } else if (id == R.id.menu_message) {
+            fragment = new MessageFragment();
+        } else if (id == R.id.menu_profile) {
+            fragment = new ProfilFragment();
+        }
 
         if (fragment != null) {
             loadFragment(fragment);
@@ -57,3 +61,4 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
     }
 }
+
